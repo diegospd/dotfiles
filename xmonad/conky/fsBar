@@ -1,0 +1,11 @@
+background yes
+out_to_console yes
+out_to_x no
+# Update interval in seconds
+update_interval 60
+ 
+TEXT
+^i(/home/diego/.xmonad/dzen2/fs_02.xbm) \
+root: ${fs_free /}   \
+strg: ${fs_free /home/diego/storage}   \
+shlf: ${fs_free /home/diego/shelf}

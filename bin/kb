@@ -1,0 +1,10 @@
+#!/bin/bash
+setxkbmap -option caps:none
+xmodmap -e 'keycode  66 = dead_acute Caps_Lock'
+xmodmap -e 'keycode 135 = ntilde Ntilde'
+#xmodmap -e 'keycode 187 = parenleft exclamdown parenleft'
+#xmodmap -e 'keycode 188 = parenright questiondown parenright'
+
+
+
+
