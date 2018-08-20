@@ -5,7 +5,7 @@ source ~/.dotfiles/zsh/exports.sh
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/diego/.oh-my-zsh"
+  export ZSH="$HOME/.dotfiles/zsh/oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -72,13 +72,13 @@ source $ZSH/oh-my-zsh.sh
 #--------------------------------------------------------------
 #                        e x p o r t s
 #--------------------------------------------------------------
-export EDITOR=nano
-export VBOX_USB=usbfs
-export SVN_EDITOR=nano
+# export EDITOR=nano
+# export VBOX_USB=usbfs
+# export SVN_EDITOR=nano
 
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk/
-export PATH=$PATH:/home/diego/storage/bin:/home/diego/.local/bin/:/home/diego/.cabal/bin
-export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+# export JAVA_HOME=/usr/lib/jvm/java-7-openjdk/
+# export PATH=$PATH:/home/diego/storage/bin:/home/diego/.local/bin/:/home/diego/.cabal/bin
+# export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -121,12 +121,8 @@ alias cuenta='expr `ls -l | wc -l` - 1'
 #           c o n e x i o n e s    r e m o t a s 
 #--------------------------------------------------------------
 
-# - UNAM
-
 alias ada='ssh -D 8080 dmurillo@ada.fciencias.unam.mx'
 
-
-# - Red local
 
 hack() {
   ssh 192.168.100.$1
