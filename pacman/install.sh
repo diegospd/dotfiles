@@ -6,13 +6,23 @@ sudo pacman -S --needed filelight testdisk gparted\
                         pkgfile \
                         ktorrent \
                         keepassx \
+                        texlive-most kile \
                         opera chromium firefox \
                         ghc cabal-install stack alex happy \
 
 sudo pkgfile --update
 
 
-yaourt -S --needed --noconfirm sublime-text-dev \
+
+gpg --recv-key 465022E743D71E39 
+git clone https://aur.archlinux.org/aurman.git
+cd aurman
+makepkg -si
+cd ..
+rm -rf aurman
+
+aurman -S --needed --noconfirm sublime-text-dev \
                                dropbox dropbox-cli \
                                google-chrome \
-                               spotify 
+                               spotify \
+                               gitkraken
