@@ -1,11 +1,11 @@
 [user]
-	email = diego.spd@gmail.com
-	name = diego murillo
+    email = diego.spd@gmail.com
+    name = diego murillo
 [alias]
-	co = checkout
-	br = branch
-	st = status
-	ld = log --oneline --abbrev-commit --all --graph --decorate
-	limpia = remote prune origin
-        fuck = reset --hard HEAD
-
+    co = checkout
+    br = branch
+    st = status
+    ld = log --oneline --abbrev-commit --all --graph --decorate
+    limpia = remote prune origin
+    nuke = reset --hard HEAD
+    wut = ls-tree -r master --name-only
