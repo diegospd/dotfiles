@@ -112,7 +112,6 @@ alias xx='xmonad --restart'
 alias xxr='xmonad --replace &'
 alias xxk='killall conky dzen2'
 alias xxx='xmonad --recompile && xmonad --restart'
-# alias prende='sudo mount /dev/mapper/shelf4tb /mnt/shelf && sudo systemctl start emby-server.service'
 ## borra todos los archivos de 0  bytes
 alias borravacio='find . -size 0c -delete'
 alias cuenta='expr `ls -l | wc -l` - 1'
