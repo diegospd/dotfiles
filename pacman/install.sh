@@ -8,7 +8,7 @@ sudo pacman -S --needed filelight testdisk gparted\
                         keepassx \
                         texlive-most kile \
                         opera chromium firefox \
-                        ghc cabal-install stack alex happy \
+                        ghc cabal-install stack alex happy hlint\
 
 sudo pkgfile --update
 
