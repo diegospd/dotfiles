@@ -44,12 +44,17 @@ launchers =
     , ("M-m", spawn "ksysguard")
     , ("M-v", spawn "keepassx")
     , ("M-k", spawn "ktorrent")
-    , ("M-S-x", spawn "subl3 --new-window ~/.xmonad/xmonad.hs")
-    , ("M-S-b", spawn "subl3 --new-window ~/.bashrc")
-    , ("M-S-p", spawn "subl3 --new-window ~/storage/codigos/haskell/pol")
+    , ("M-x x", openSubl "~/.dotfiles/xmonad/xmonad.hs")
+    , ("M-x k", openSubl "~/.dotfiles/xmonad/Keys.hs")
+    , ("M-x i", openSubl "~/.dotfiles/xmonad/InfoBars.hs")
+    , ("M-x z", openSubl "~/.zshrc")
+    , ("M-x p", openSubl "~/storage/codigos/haskell/pol")
     , ("M-S-<KP_Enter>", spawn "konsole -e ~/.local/bin/pol")
     , ("M-S-<KP_Subtract>", spawn "echo \"cd ~/storage/crypto/tor-browser_en-US && ./start-tor-browser.desktop\" | bash")
     ]
+
+openSubl :: String -> X ()
+openSubl path = spawn $ "subl3 --new-window " <> path
 
 multimedia :: [KeyBinding]
 multimedia =  
@@ -63,14 +68,26 @@ multimedia =
 dolphin :: [KeyBinding] 
 dolphin =
     [
-      ("M-d <Return>", spawn "dolphin")
-    , ("M-S-d", spawn "dolphin")
-    , ("M-d s", spawn "dolphin ~/shelf")
-    , ("M-d d", spawn "dolphin ~/Dropbox")
-    , ("M-d v", spawn "dolphin ~/shelf/video/")
-    , ("M-d .", spawn "dolphin ~/.dotfiles/")
-    , ("M-d x", spawn "dolphin ~/.dotfiles/xmonad/")
+      ("M-d <Return>", runDolphin "~/")
+    , ("M-S-d", runDolphin "~/" )
+
+    , ("M-d s", runDolphin "~/shelf")
+    , ("M-d w", runDolphin "~/storage")
+
+    , ("M-d t", runDolphin "~/textos")
+    , ("M-d d", runDolphin "~/Dropbox")
+    , ("M-d .", runDolphin "~/.dotfiles")
+    , ("M-d x <Return>", runDolphin "~/.dotfiles/xmonad")
+
+    , ("M-d v", runDolphin "~/shelf/video")
+    , ("M-d i", runDolphin "~/shelf/img")
+
+    , ("M-d l", runDolphin "~/storage/libros")
+    , ("M-d c", runDolphin "~/storage/docs/cv")
     ] 
+
+runDolphin :: String -> X()
+runDolphin path = spawn $ "dolphin " <> path
 
 konsole :: [KeyBinding] 
 konsole =
