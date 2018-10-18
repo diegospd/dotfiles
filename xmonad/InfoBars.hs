@@ -14,9 +14,10 @@ data ScreenBar = SB {
 
 -- | This is the configuration that wil be used
 myConf = c_1280_1920
+-- myConf = c_1280
 
 c_1280_1920 = SB 1280 1920 0 1400 2
-
+c_1280 = SB 0 1280 0 800 2
 
 -- | Single 1920 screen
 -- No status bars
