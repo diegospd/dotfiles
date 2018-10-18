@@ -4,7 +4,7 @@ module Keys (myKeys, theKeys, forbiddenKeys, myMod) where
 import XMonad
 import XMonad.Util.EZConfig
 
-
+import Prelude hiding (sequence)
 import Data.List
 
 import XMonad.Hooks.ManageDocks
@@ -115,8 +115,34 @@ admin =
     ]
 
 
+
+-- We are building everything with stack.
+xmonad_command :: String -> BashCommand
+xmonad_command flags = pad_cmd $ "stack --system-ghc exec xmonad -- " <> flags  
+recompile_command = xmonad_command "--recompile "
+restart_command   = xmonad_command "--restart "
+replace_command   = xmonad_command "--replace "
+
+pad_cmd :: String -> BashCommand
+pad_cmd c = " " <> c <> " "
+
+sequence :: [String] -> BashCommand
+sequence xs = pad_cmd $ concat $ intersperse " && " (pad_cmd <$> xs) 
+
+type BashCommand = String 
+
+if_xmonad_is_running :: BashCommand -> BashCommand -> BashCommand
+if_xmonad_is_running when_true when_false = pad_cmd $ concat xs
+    where xs = ["if type xmonad; then ", when_true, " ; else ", when_false, " ; fi"]
+
 restart_pulseaudio = spawn "pulseaudio -k || pulseaudio --start"
-recompile_xmonad = spawn "if type xmonad; then killall dzen2 && xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"
+recompile_xmonad = spawn $ if_xmonad_is_running (
+                              sequence [
+                                "killall dzen2"
+                                ,recompile_command
+                                ,restart_command  ] )
+                              " xmessage xmonad not in \\$PATH: \"$PATH\" "
+-- recompile_xmonad = spawn $ if_xmonad_is_running ("killall dzen2 && " ++ recompile_command ++ " && xmonad --restart") "xmessage xmonad not in \\$PATH: \"$PATH\""
 restart_xmonad = spawn "if type xmonad; then killall dzen2 && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi" 
 run_rofi = spawn $ unwords
     [ "rofi -show run -modi run -location 1 -width 100 -yoffset 24"

@@ -1,19 +1,25 @@
 #!/bin/bash
 
-sudo pacman -S --needed filelight testdisk gparted\
+
+sudo pacman -S --needed sddm \
+                        filelight testdisk gparted \
                         git \
-                        tree hwinfo htop\
+                        tree hwinfo htop \
+                        openssh ntp \
                         pkgfile \
-                        ktorrent \
+                        ktorrent subdownloader \
+                        vlc mplayer kaffeine \
                         keepassx \
                         texlive-most kile \
                         opera chromium firefox \
-                        ghc cabal-install stack alex happy hlint\
+                        virtualbox virtualbox-host-modules-arch \
+                        ghc ghc-static \
+                        conky dzen2 rofi pacman-contrib espeak \
+                        zsh ruby
+                        
 
-sudo pkgfile --update
 
-
-
+## Build and install aurman
 gpg --recv-key 465022E743D71E39 
 git clone https://aur.archlinux.org/aurman.git
 cd aurman
@@ -21,9 +27,26 @@ makepkg -si
 cd ..
 rm -rf aurman
 
+
 aurman -S --needed --noconfirm sublime-text-dev \
                                dropbox dropbox-cli \
                                google-chrome \
                                spotify \
+                               stack-bin \
                                ffmpeg-compat-54 \ # spotify local files
-                               gitkraken
+                               gitkraken 
+
+
+## Haskell management
+## Make sure ~/.local/bin is in your $PATH
+stack setup --system-ghc
+stack install --system-ghc cabal-install xmonad xmonad-contrib
+
+sudo systemctl enable \
+                  systemd-modules-load.service \
+                  ntpd.service \
+                  sshd.service
+
+sudo pkgfile --update
+
+echo "Please reboot :)"
