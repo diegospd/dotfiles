@@ -2,7 +2,7 @@
 
 sudo pacman -S --needed filelight testdisk gparted\
                         git \
-                        tree hwinfo\
+                        tree hwinfo htop\
                         pkgfile \
                         ktorrent \
                         keepassx \
@@ -25,4 +25,5 @@ aurman -S --needed --noconfirm sublime-text-dev \
                                dropbox dropbox-cli \
                                google-chrome \
                                spotify \
+                               ffmpeg-compat-54 \ # spotify local files
                                gitkraken
