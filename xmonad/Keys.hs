@@ -48,6 +48,7 @@ launchers =
     , ("M-x k", openSubl "~/.dotfiles/xmonad/Keys.hs")
     , ("M-x i", openSubl "~/.dotfiles/xmonad/InfoBars.hs")
     , ("M-x z", openSubl "~/.zshrc")
+    , ("M-x .", openSubl "~/.dotfiles")
     , ("M-x p", openSubl "~/storage/codigos/haskell/pol")
     , ("M-S-<KP_Enter>", spawn "konsole -e ~/.local/bin/pol")
     , ("M-S-<KP_Subtract>", spawn "echo \"cd ~/storage/crypto/tor-browser_en-US && ./start-tor-browser.desktop\" | bash")
@@ -84,6 +85,7 @@ dolphin =
 
     , ("M-d l", runDolphin "~/storage/libros")
     , ("M-d c", runDolphin "~/storage/docs/cv")
+    , ("M-d j", runDolphin "~/storage/codigos/chambas")
     ] 
 
 runDolphin :: String -> X()
