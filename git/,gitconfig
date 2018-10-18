@@ -8,4 +8,5 @@
     ld = log --oneline --abbrev-commit --all --graph --decorate
     limpia = remote prune origin
     nuke = reset --hard HEAD
+    saltapatras = reset --hard HEAD~1
     wut = ls-tree -r master --name-only
