@@ -8,6 +8,7 @@
 pacman -Syyu --needed \
     sddm xorg-server \
     plasma-desktop kde-applications-meta phonon-qt5-vlc \
+    dolphin dolphin-plugins \
     filelight testdisk gparted \
     tree hwinfo htop \
     openssh ntp \

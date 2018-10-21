@@ -2,7 +2,7 @@
 
 aurman -S --needed --noconfirm \
       sublime-text-dev \
-      dropbox dropbox-cli \
+      dropbox droxi dropbox-cli \
       systemd-kcm \
       google-chrome \
       spotify ffmpeg-compat-54 \
