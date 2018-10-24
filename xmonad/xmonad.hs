@@ -1,3 +1,6 @@
+ {-# LANGUAGE OverloadedStrings #-}
+import Data.Text hiding(concat)
+
 
 -- Referencias para moverle aquí:
 -- http://thinkingeek.com/2011/11/21/simple-guide-configure-xmonad-dzen2-conky/
@@ -24,6 +27,9 @@ import Data.List
 
 import InfoBars (logBar, infoBars, conkyIcon)
 import Keys
+import Bash
+
+import Turtle
 
 import XMonad
 import XMonad.Util.Run  
@@ -59,13 +65,37 @@ import qualified XMonad.StackSet as W -- to shift and float windows
 
 
 
+main ::IO ()
+main = do
+  say "Initializing all lambda systems"
+  mapM_ kill_if_running ["conky", "dzen2"]
+  fix_keyboard
+  workspaceBar <- spawnPipe logBar
+  mapM_ spawnPipe infoBars
+  xmonad . docks $ myConfig
+      { modMask            = myMod 
+      , workspaces         = myWorkspaces
+      , manageHook         = manageHook myConfig <+> myManageHook <+> manageDocks 
+      , layoutHook         = avoidStruts  (layoutHook myConfig)
+      , handleEventHook    = handleEventHook myConfig <+> docksEventHook 
+      , startupHook        = startupHook myConfig <+> docksStartupHook  <+> return () >> checkKeymap myConfig theKeys
+      , logHook            = myLogHook workspaceBar >> fadeInactiveLogHook 0xdddddddd
+      , borderWidth        = 4
+      , normalBorderColor  = "#000000"
+      , focusedBorderColor = "#7B68EE"
+      } `additionalKeys` myKeys `additionalKeysP` theKeys
+
+
+
+
 -------------------------------------------------------------------------------------------------------------------
 -- Main
 -------------------------------------------------------------------------------------------------------------------
 myConfig = kde4Config `removeKeysP` forbiddenKeys `additionalKeys` myKeys `additionalKeysP` theKeys
 
-main :: IO ()
-main = do
+main_viejo :: IO ()
+main_viejo = do
+    say "Lambda is the symbol."
     -- spawn "/home/diego/storage/bin/kb" -- "echo \"kb\" | bash"
     -- spawn "redshift -l 19.320912:-99.143774"
     spawn "espeak 'Reinitializing all lambda systems.'"

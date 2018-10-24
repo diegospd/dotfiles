@@ -1,9 +1,12 @@
-module Keys (myKeys, theKeys, forbiddenKeys, myMod) where
+ {-# LANGUAGE OverloadedStrings #-}
 
+module Keys (myKeys, theKeys, forbiddenKeys, myMod) where
 
 import XMonad
 import XMonad.Util.EZConfig
 
+import Bash
+import Data.Text hiding(concat, unwords, intersperse,zip)
 import Prelude hiding (sequence)
 import Data.List
 
@@ -108,11 +111,14 @@ admin =
       ("M-p", run_rofi)
     , ("M-b", toggleBars)
     , ("M-a p", run_rofi)
-    , ("M-a <Backspace>", restart_xmonad)
-    , ("M-a =", recompile_xmonad)
+    -- , ("M-a <Backspace>", restart_xmonad)
+    , ("M-a <Backspace>", x_restart)
+    , ("M-a =", x_compile)
+    , ("M-a a", say "All systems are okay")
     , ("M-a b", restart_pulseaudio)
     , ("M-a s", spawn "systemsettings5")
     ]
+
 
 
 
@@ -136,14 +142,14 @@ if_xmonad_is_running when_true when_false = pad_cmd $ concat xs
     where xs = ["if type xmonad; then ", when_true, " ; else ", when_false, " ; fi"]
 
 restart_pulseaudio = spawn "pulseaudio -k || pulseaudio --start"
-recompile_xmonad = spawn $ if_xmonad_is_running (
-                              sequence [
-                                "killall dzen2"
-                                ,recompile_command
-                                ,restart_command  ] )
-                              " xmessage xmonad not in \\$PATH: \"$PATH\" "
+-- recompile_xmonad = spawn $ if_xmonad_is_running (
+--                               sequence [
+--                                 "killall dzen2"
+--                                 ,recompile_command
+--                                 ,restart_command  ] )
+--                               " xmessage xmonad not in \\$PATH: \"$PATH\" "
 -- recompile_xmonad = spawn $ if_xmonad_is_running ("killall dzen2 && " ++ recompile_command ++ " && xmonad --restart") "xmessage xmonad not in \\$PATH: \"$PATH\""
-restart_xmonad = spawn "if type xmonad; then killall dzen2 && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi" 
+-- restart_xmonad = spawn "if type xmonad; then killall dzen2 && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi" 
 run_rofi = spawn $ unwords
     [ "rofi -show run -modi run -location 1 -width 100 -yoffset 24"
     , "-lines 2 -line-margin 0 -line-padding 1"

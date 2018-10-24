@@ -8,14 +8,14 @@
 pacman -Syyu --needed \
     sddm xorg-server \
     plasma-desktop kde-applications-meta phonon-qt5-vlc \
-    dolphin dolphin-plugins \
+    dolphin dolphin-plugins encfs \
     filelight testdisk gparted \
     tree hwinfo htop \
     openssh ntp \
     pkgfile \
     ktorrent subdownloader \
     vlc mplayer kaffeine \
-    rhythmbox \
+    rhythmbox audacity \
     keepassx \
     texlive-most kile \
     opera chromium firefox \

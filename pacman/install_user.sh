@@ -6,13 +6,12 @@ aurman -S --needed --noconfirm \
       systemd-kcm \
       google-chrome \
       spotify ffmpeg-compat-54 \
-      gitkraken 
+      gitkraken postman
 
 
 ## Make sure ~/.local/bin is in your $PATH
 stack install --system-ghc \
-      xmonad xmonad-contrib \
-      turtle \
+      xmonad xmonad-contrib turtle \
       cabal-install \
       alex happy hlint
 cabal update
