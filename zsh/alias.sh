@@ -1,7 +1,12 @@
 
+## Temp
+alias nubank='cd ~/storage/codigos/chambas/nubank'
+alias iswim='cd ~/storage/codigos/haskell/iswim'
+
 alias ed='subl3'
 
 # Git
+alias add='git add'
 alias chiclepega='git commit --amend -C HEAD && git push --force'
 alias comovenga='git reset --hard HEAD~1 && git pull'
 

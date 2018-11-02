@@ -62,7 +62,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 
-source ~/.dotfiles/zsh/exports
-source ~/.dotfiles/zsh/aliases
-source ~/.dotfiles/zsh/utils
-source ~/.dotfiles/zsh/init
+source ~/.dotfiles/zsh/export.sh
+source ~/.dotfiles/zsh/alias.sh
+source ~/.dotfiles/zsh/utils.sh
+source ~/.dotfiles/zsh/init.sh

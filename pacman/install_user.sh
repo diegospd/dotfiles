@@ -4,9 +4,10 @@ aurman -S --needed --noconfirm \
       sublime-text-dev \
       dropbox droxi dropbox-cli \
       systemd-kcm \
+      diskmonitor \
       google-chrome \
       spotify ffmpeg-compat-54 \
-      gitkraken postman
+      gitkraken postman-bin
 
 
 ## Make sure ~/.local/bin is in your $PATH
