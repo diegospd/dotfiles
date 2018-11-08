@@ -4,6 +4,8 @@ module Keys (myKeys, theKeys, forbiddenKeys, myMod) where
 
 import XMonad
 import XMonad.Util.EZConfig
+import XMonad.Actions.WindowBringer
+
 
 import Bash
 import Data.Text hiding(concat, unwords, intersperse,zip)
@@ -22,6 +24,7 @@ type KeyBinding = (String, X())
 
 theKeys :: [KeyBinding]
 theKeys = admin
+       ++ windowBringer
        ++ multimedia 
        ++ launchers   
        ++ mouseKeys 
@@ -35,6 +38,8 @@ forbiddenKeys :: [String]
 forbiddenKeys = ["M-q"]
 -- TODO switch to emacs
 myKeys = numpadSwitcher
+
+windowBringer = [ ("M-g", gotoMenu), ("M-t", bringMenu) ]
 
    
 -- Emacs style key sequecences
