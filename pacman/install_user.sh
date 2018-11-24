@@ -1,6 +1,7 @@
 #!/bin/bash
 
 aurman -S --needed --noconfirm \
+      unclutter-xfixes-git \
       sublime-text-dev \
       dropbox droxi dropbox-cli \
       systemd-kcm \

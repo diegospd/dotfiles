@@ -39,7 +39,7 @@ forbiddenKeys = ["M-q"]
 -- TODO switch to emacs
 myKeys = numpadSwitcher
 
-windowBringer = [ ("M-g", gotoMenu), ("M-t", bringMenu) ]
+windowBringer = [ ("M-g", gotoMenu), ("M-S-g", bringMenu) ]
 
    
 -- Emacs style key sequecences
