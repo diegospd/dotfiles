@@ -10,6 +10,6 @@ cd ..
 rm -rf aurman
 
 aurman -S --needed --noconfirm stack-bin
-stack --system-ghc setup 
+#stack --system-ghc setup 
 
 echo " ~~ Install aurman and stack packages now."
