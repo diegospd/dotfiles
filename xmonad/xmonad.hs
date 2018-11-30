@@ -1,26 +1,6 @@
  {-# LANGUAGE OverloadedStrings #-}
 import Data.Text hiding(concat)
 
-
--- Referencias para moverle aquí:
--- http://thinkingeek.com/2011/11/21/simple-guide-configure-xmonad-dzen2-conky/
--- https://braincrater.wordpress.com/2008/11/02/pimp-your-xmonad-1-status-bars/
--- https://wiki.haskell.org/Xmonad/Config_archive/John_Goerzen's_Configuration#Installing_xmobar
--- http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Hooks-DynamicLog.html#v:dynamicLogWithPP
-
--- Esta configuración es para que xmonad corra sobre plasma.
--- La saqué de aquí.
--- https://wiki.haskell.org/Xmonad/Using_xmonad_in_KDE
--- julio 31 2016
-
-
--- deals with docks and taskbars
--- sets the default terminal to konsole
--- sets mod-p to run popup
--- sets mod-shift-q to logout properly.
-
--- holy grail
-
 import System.IO
 import Data.Monoid(Endo)
 import Data.List
@@ -41,8 +21,26 @@ import XMonad.Hooks.FadeInactive
 import qualified XMonad.StackSet as W -- to shift and float windows
 
 
+data Daemon = Daemon {
+    command :: Text,
+    args :: [Text]
+}
 
+start_daemon :: MonadIO io => Daemon -> io ()
+start_daemon daemon = do
+    kill_if_running $ command daemon
+    sh $ procStrict (command daemon) (args daemon) ""
+    
 
+daemons :: [Daemon]
+daemons =
+  [ Daemon "unclutter" []
+  , Daemon "kb" []
+  , Daemon "espeak" ["Summoning all lambda demons"]
+  ]
+
+wake_daemons :: MonadIO io => io ()
+wake_daemons = mapM_ start_daemon daemons
 
 
 
@@ -67,9 +65,10 @@ import qualified XMonad.StackSet as W -- to shift and float windows
 
 main ::IO ()
 main = do
-  say "Initializing all lambda systems"
+  -- say "Initializing all lambda systems"
   mapM_ kill_if_running ["conky", "dzen2"]
-  fix_keyboard
+  -- fix_keyboard
+  wake_daemons
   workspaceBar <- spawnPipe logBar
   mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig

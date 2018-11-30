@@ -23,7 +23,7 @@ alias aurLista='pacman -Qm'
 
 
 prende() {
-  sudo mount /dev/mapper/shelf4tb /mnt/shelf && \\
+  sudo mount /dev/mapper/shelf4tb /mnt/shelf && \
   sudo systemctl start emby-server.service
   kb
 }
