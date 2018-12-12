@@ -9,8 +9,7 @@ module Bash (
 import Turtle
 import Prelude hiding(FilePath)
 import Data.Maybe
-import Data.Text
-import Data.Either
+
 
 -- | Returns IO True iff 'program' is an executable in PATH
 is_installed :: MonadIO m => Turtle.FilePath -> m Bool
@@ -39,7 +38,7 @@ x_start = proc xmonad_bin ["--replace"] ""  >> return ()
 x_restart :: MonadIO io => io ()
 x_restart = do
     x_kill_children
-    x_kill_if_running
+    _ <- x_kill_if_running
     x_start
     return ()
 

@@ -12,4 +12,4 @@ rm -rf aurman
 aurman -S --needed --noconfirm stack-bin
 stack --system-ghc setup 
 
-echo " ~~ Install aurman and stack packages now."
+echo " ~~ Install aur and stack packages now."

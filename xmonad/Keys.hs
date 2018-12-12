@@ -3,12 +3,11 @@
 module Keys (myKeys, theKeys, forbiddenKeys, myMod) where
 
 import XMonad
-import XMonad.Util.EZConfig
 import XMonad.Actions.WindowBringer
 
 
 import Bash
-import Data.Text hiding(concat, unwords, intersperse,zip)
+-- import Data.Text hiding(concat, unwords, intersperse,zip)
 import Prelude hiding (sequence)
 import Data.List
 
