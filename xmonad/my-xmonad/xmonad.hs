@@ -42,7 +42,7 @@ main = do
   -- fix_keyboard
   -- wake_daemons
   workspaceBar <- spawnPipe logBar
-  mapM_ spawnPipe infoBars
+  -- mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig
       { modMask            = myMod
       , terminal           = "konsole"
