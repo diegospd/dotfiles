@@ -36,14 +36,16 @@ myWorkspaces = [">   1:tmp", "2:web", "3:webλ", "4:tesis", "5:floats", "6:comm"
 
 main ::IO ()
 main = do
+  -- say "it works! my good luck"
   say "Initializing all lambda systems"
-  mapM_ kill_if_running ["conky", "dzen2"]
+  -- mapM_ kill_if_running ["conky", "dzen2"]
   -- fix_keyboard
   -- wake_daemons
   workspaceBar <- spawnPipe logBar
   mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig
-      { modMask            = myMod 
+      { modMask            = myMod
+      , terminal           = "konsole"
       , workspaces         = myWorkspaces
       , manageHook         = manageHook myConfig <+> manageDocks 
       , layoutHook         = avoidStruts  (layoutHook myConfig)
