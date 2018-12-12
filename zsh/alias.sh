@@ -20,7 +20,7 @@ alias x_restart='xmonad-x86_64-linux --restart'
 alias x_compile='stack --system-ghc exec xmonad -- --recompile'
 
 alias aurLista='pacman -Qm'
-
+alias mirrors='sudo reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist'
 
 prende() {
   sudo mount /dev/mapper/shelf4tb /mnt/shelf && \
