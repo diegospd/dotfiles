@@ -9,7 +9,7 @@ makepkg -si
 cd ..
 rm -rf aurman
 
-aurman -S --needed --noconfirm stack-bin
+aurman -S --needed --noconfirm --noedit stack-bin
 stack --system-ghc setup 
 
 echo " ~~ Install aur and stack packages now."

@@ -1,7 +1,7 @@
 
 
 export PATH=$PATH:~/.local/bin
-export PATH =$PATH:~/.cabal/bin
+# export PATH =$PATH:~/.cabal/bin
 # export PATH=$PATH:~/.dotfiles/bin
 
 export EDITOR=nano

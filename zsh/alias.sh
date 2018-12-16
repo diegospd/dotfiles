@@ -22,7 +22,7 @@ alias x_restart='killall dzen2 conky && stack --system-ghc exec xmonad-x86_64-li
 
 alias aurLista='pacman -Qm'
 alias mirrors='sudo reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist'
-
+alias hosts='sudo nano /etc/hosts'
 prende() {
   sudo mount /dev/mapper/shelf4tb /mnt/shelf && \
   sudo systemctl start emby-server.service
