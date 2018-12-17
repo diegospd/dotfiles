@@ -1,54 +1,117 @@
 module InfoBars (logBar, infoBars, conkyIcon) where
 
+
 import Data.List
 import Control.Monad.Reader
 
-data ScreenBar = SB { 
-                      screen1 :: Int   -- length in pixels
-                    , screen2 :: Int   -- length in pixels
-                    , screen3 :: Int   -- length in pixels
-                    , logLength :: Int -- length in pixels
-                    , logBarScreen :: Int  -- Must be in [1,2,3] 
-                    } deriving (Eq, Show, Ord)
+
+screenConf :: Screens
+screenConf = SConf {
+    left = Nothing,
+    middle = Just $ Screen 1920 1080 [
+        bar_log,
+        bar_clock
+        -- bar_date,
+        -- bar_arch,
+        -- bar_sound
+    ],
+    right = Nothing,
+    logBarScreen = SMiddle
+}
+
+-- screenConf :: Screens
+-- screenConf = SConf {
+--     left = Just $ Screen 1280 1024 [
+--         bar_wifi,
+--         bar_ethernet,
+--         bar_cpu,
+--         bar_fs
+--     ],
+--     middle = Just $ Screen 1920 1080 [
+--         bar_log,
+--         bar_clock,
+--         bar_date,
+--         bar_arch,
+--         bar_sound
+--     ],
+--     right = Nothing,
+--     logBarScreen = SMiddle
+-- }
 
 
--- | This is the configuration that wil be used
-myConf = c_1280_1920
--- myConf = c_1280
-
-c_1280_1920 = SB 1280 1920 0 1400 2
--- c_1280 = SB 0 1280 0 800 2
-
--- | Single 1920 screen
--- No status bars
--- l_1920 :: ScreenBar
--- l_1920 = SB 1920 0 0 1920 1
+------------------------------------------------------------------
 
 
--- | The conky filename and its minimum length in pixels
-bars1 :: [(String, Int)]
-bars1 = [
-          ("wifiBar", 300)
-        , ("ethernetBar", 300)
-        , ("cpuBar", 260)
-        , ("fsBar", 400) 
-        ]
+data Screen = Screen {
+    width :: Int,
+    height :: Int,
+    bars :: [InfoBar]
+}
 
 
-bars2 :: [(String, Int)]  
-bars2 = [
-          ("clockBar", 80)
-        , ("dateBar", 240)
-        , ("archBar", 120)
-        , ("soundBar", 80)
-        ]
+
+data Screens = SConf {
+    left :: Maybe Screen,
+    middle :: Maybe Screen,
+    right :: Maybe Screen,
+    logBarScreen :: ScreenLabel
+}
+
+data ScreenLabel = SLeft
+                 | SMiddle
+                 | SRight deriving (Eq, Show, Ord)
 
 
-bars3 :: [(String, Int)]  
-bars3 = [
-        
-        ]
 
+data InfoBar = Conky {
+                 bar :: String,
+                 minimum_width :: Int
+               }
+             | LogBar {
+                 logSize :: Int
+             } deriving (Eq, Show, Ord)
+
+bar_wifi = Conky "wifi" 300
+bar_ethernet = Conky "ethernet" 300
+bar_cpu = Conky "cpu" 260
+bar_fs = Conky "fs" 400
+bar_clock = Conky "clock" 80
+bar_date = Conky "date" 240
+bar_arch = Conky "arch" 120
+bar_sound = Conky "sound" 80
+bar_log = LogBar 1400 
+
+
+----------------------------------------------
+logbar_width :: Screens -> Int
+logbar_width conf = logSize . head $ filter isLog (logbar_set conf)
+
+logbar_set :: Screens -> [InfoBar]
+logbar_set conf = maybe [] bars $ case logBarScreen conf of
+                                   SLeft -> left conf
+                                   SMiddle -> middle conf
+                                   SRight -> right conf
+
+
+logbar_offset :: Screens -> Int
+logbar_offset conf = sum $ minimum_width <$> takeWhile (not . isLog) bars
+    where bars = logbar_set conf
+
+isLog :: InfoBar -> Bool
+isLog LogBar{} = True
+isLog _ = False
+
+x_offset :: Screens -> ScreenLabel -> Int
+x_offset _ SLeft = 0
+x_offset conf SMiddle = maybe 0 width (left conf)
+x_offset conf SRight = maybe 0 width (middle conf) + x_offset conf SMiddle
+
+logBar' :: Screens -> BarCommand
+logBar' conf = mkDzen' offset (logbar_width conf) "l"
+  where offset = logbar_offset conf + x_offset conf (logBarScreen conf)
+
+logBar :: BarCommand
+logBar = logBar' screenConf
 
 background = "#FFFFFF"
 foreground = "#1B1D1E"
@@ -70,16 +133,18 @@ font = last  [ "clean"
 type BarCommand = String
 
 infoBars :: [BarCommand]
-infoBars = runReader infoBars' myConf
+infoBars = []
+-- infoBars = runReader infoBars' myConf
 
-logBar :: BarCommand
-logBar = runReader logBar' myConf
+-- logBar :: BarCommand
+-- logBar = runReader logBar' myConf
 -------------------------------------------------
 
 type MyConfig = Reader ScreenBar
 
 log_screen :: MyConfig Int
-log_screen = asks logBarScreen 
+log_screen = return 8
+-- log_screen = asks logBarScreen 
 
 log_length :: MyConfig Int
 log_length = asks logLength
@@ -90,39 +155,39 @@ prev_offset screen = do
     let ls = [screen1 conf, screen2 conf, screen3 conf]
     return $ sum $ take (screen -1)  ls
 
-x_offset :: Int -> MyConfig Int
-x_offset screen = do
-    s <- log_screen
-    x <- prev_offset screen
-    w <- log_length
-    return $ if screen == s then x+w else x
+-- x_offset :: Int -> MyConfig Int
+-- x_offset screen = do
+--     s <- log_screen
+--     x <- prev_offset screen
+--     w <- log_length
+--     return $ if screen == s then x+w else x
 
 
-infoBars' :: MyConfig [BarCommand]
-infoBars' = do
-    left <- infoBars'' 1
-    middle <- infoBars'' 2
-    right <- infoBars'' 3
-    return $ left ++ middle ++ right
+-- infoBars' :: MyConfig [BarCommand]
+-- infoBars' = do
+--     left <- infoBars'' 1
+--     middle <- infoBars'' 2
+--     right <- infoBars'' 3
+--     return $ left ++ middle ++ right
 
-infoBars'' :: Int -> MyConfig [BarCommand]
-infoBars'' screen = do
-    let f = [screen1, screen2, screen3] !! (screen -1)
-    len <- asks f
-    x <- x_offset screen
-    let bars = [bars1, bars2, bars3] !! (screen -1)
-    l <- log_length
-    s <- log_screen
-    let space = if s == screen then len-l else len
-    return $ spawnAll x space bars
+-- infoBars'' :: Int -> MyConfig [BarCommand]
+-- infoBars'' screen = do
+--     let f = [screen1, screen2, screen3] !! (screen -1)
+--     len <- asks f
+--     x <- x_offset screen
+--     let bars = [bars1, bars2, bars3] !! (screen -1)
+--     l <- log_length
+--     s <- log_screen
+--     let space = if s == screen then len-l else len
+--     return $ spawnAll x space bars
 
 
-logBar' :: MyConfig BarCommand
-logBar' = do
-    s <- log_screen
-    x <- x_offset s
-    w <- log_length
-    return $ mkDzen' (x-w) w "l"
+-- logBar' :: MyConfig BarCommand
+-- logBar' = do
+--     s <- log_screen
+--     x <- x_offset s
+--     w <- log_length
+--     return $ mkDzen' (x-w) w "l"
 
 
 
@@ -137,7 +202,7 @@ spawnBar (conky, width, offset, align) = cmd ++ conky ++ " | " ++ dzen
 spawnAll :: Int
          -- ^ Horizontal offset in pixels
          -> Int
-         -- ^ Length of screen size in pixels 
+         -- ^ Length of screen in pixels 
          -> [(String, Int)]
          -- ^ conky filename, minimum length
          -> [BarCommand]
@@ -203,4 +268,54 @@ conkyIcon icon = "^i(" ++ bitmapsDir ++ "/" ++ icon ++ ")"
 
 mapSnd :: (a -> b) -> (c, a) -> (c, b)
 mapSnd f (x,y) = (x,f y)
+
+
+---------------------------------------------------------
+
+data ScreenBar = SB { 
+                      screen1 :: Int   -- length in pixels
+                    , screen2 :: Int   -- length in pixels
+                    , screen3 :: Int   -- length in pixels
+                    , logLength :: Int -- length in pixels
+                    , logBarScreen' :: Int  -- Must be in [1,2,3] 
+                    } deriving (Eq, Show, Ord)
+
+
+
+-- | This is the configuration that wil be used
+myConf = c_1280_1920
+-- myConf = c_1280
+
+c_1280_1920 = SB 1280 1920 0 1400 2
+-- c_1280 = SB 0 1280 0 800 2
+
+-- | Single 1920 screen
+-- No status bars
+-- l_1920 :: ScreenBar
+-- l_1920 = SB 1920 0 0 1920 1
+
+
+-- | The conky filename and its minimum length in pixels
+bars1 :: [(String, Int)]
+bars1 = [
+          ("wifiBar", 300)
+        , ("ethernetBar", 300)
+        , ("cpuBar", 260)
+        , ("fsBar", 400) 
+        ]
+
+
+bars2 :: [(String, Int)]  
+bars2 = [
+          ("clockBar", 80)
+        , ("dateBar", 240)
+        , ("archBar", 120)
+        , ("soundBar", 80)
+        ]
+
+
+bars3 :: [(String, Int)]  
+bars3 = [
+        
+        ]
 

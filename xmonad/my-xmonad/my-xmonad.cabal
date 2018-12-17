@@ -9,6 +9,7 @@ executable xmonad-x86_64-linux
   other-modules:       Bash
                      , InfoBars
                      , Keys
+                     , Hooks
   build-depends:       base
                      , xmonad
                      , xmonad-contrib
