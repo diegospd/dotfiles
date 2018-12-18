@@ -6,5 +6,5 @@
 EXE_NAME=xmonad-x86_64-linux
 OUTPUT=$1
 
-stack build
+stack install
 cp -uf $(stack exec which $EXE_NAME) $OUTPUT

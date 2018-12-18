@@ -37,13 +37,12 @@ myWorkspaces = [">   1:tmp", "2:web", "3:webλ", "4:tesis", "5:floats", "6:comm"
 
 main ::IO ()
 main = do
-  -- say "it works! my good luck"
-  say "Initializing all lambda systems"
-  -- mapM_ kill_if_running ["conky", "dzen2"]
+  say "sup man, guess what? it works! My master is Sdsowem! "
+  mapM_ kill_if_running ["conky"]
   -- fix_keyboard
   -- wake_daemons
   workspaceBar <- spawnPipe logBar
-  -- mapM_ spawnPipe infoBars
+  mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig
       { modMask            = myMod
       , terminal           = "konsole"
