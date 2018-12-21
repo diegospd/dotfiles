@@ -5,36 +5,36 @@ import Data.List
 import Control.Monad.Reader
 
 
-screenConf :: Screens
-screenConf = SConf {
-    left = Nothing,
-    right = Nothing,
-    middle = Just $ Screen 1366 768 [
-        bar_log,
-        bar_clock,
-        bar_date
-    ],
-    logBarScreen = SMiddle
-}
-
 -- screenConf :: Screens
 -- screenConf = SConf {
---     left = Just $ Screen 1280 1024 [
---         bar_wifi,
---         bar_ethernet,
---         bar_cpu,
---         bar_fs
---     ],
---     middle = Just $ Screen 1920 1080 [
+--     left = Nothing,
+--     right = Nothing,
+--     middle = Just $ Screen 1366 768 [
 --         bar_log,
 --         bar_clock,
---         bar_date,
---         bar_arch,
---         bar_sound
+--         bar_date
 --     ],
---     right = Nothing,
 --     logBarScreen = SMiddle
 -- }
+
+screenConf :: Screens
+screenConf = SConf {
+    left = Just $ Screen 1280 1024 [
+        bar_wifi,
+        bar_ethernet,
+        bar_cpu,
+        bar_fs
+    ],
+    middle = Just $ Screen 1920 1080 [
+        bar_log,
+        bar_clock,
+        bar_date,
+        bar_arch,
+        bar_sound
+    ],
+    right = Nothing,
+    logBarScreen = SMiddle
+}
 
 
 ------------------------------------------------------------------
@@ -75,14 +75,14 @@ align x@Conky{} = conky_align x
 align x@LogBar{} = log_align x
 
 
-bar_wifi = Conky "wifi" 300 "c"
-bar_ethernet = Conky "ethernet" 300 "c"
+bar_wifi = Conky "wifi" 150 "c"
+bar_ethernet = Conky "ethernet" 150 "c"
 bar_cpu = Conky "cpu" 260 "c"
 bar_fs = Conky "fs" 400 "c"
 bar_clock = Conky "clock" 75 "c"
 bar_date = Conky "date" 210 "c"
-bar_arch = Conky "arch" 120 "c"
-bar_sound = Conky "sound" 80 "c"
+bar_arch = Conky "arch" 140 "c"
+bar_sound = Conky "sound" 85 "c"
 bar_log = LogBar "l"
 
 
@@ -156,12 +156,8 @@ font = last  [ "clean"
 type BarCommand = String
 
 
+infoBars :: [BarCommand]
 infoBars = spawnBars screenConf
--- infoBars :: [BarCommand]
--- infoBars = infoBars' screenConf
-
--- infoBars' :: Screens -> [BarCommand]
--- infoBars' conf = spawnBar <$> vegeta `concatMap` with_offset conf
 
 with_offset :: Screens -> [(Screen, Int)]
 with_offset conf = (\(screen,label) -> (screen, extra screen + screen_offset conf label)) <$> screens
@@ -181,10 +177,7 @@ spawnBars' (screen, offset) =  spawnBar <$> options
           options' = zip4 conkys widths offsets aligns
           options = mapFst4 conky <$> options'
 
--- vegeta :: (Screen, Int) -> [(String, Int, Int, String)]
--- vegeta (screen, screen_offset) = (\x -> (conky x <> "Bar", conky_width x + blank_space, screen_offset, align x)) <$> bars'
---     where bars' = filter (not . isLog) $ bars screen
---           blank_space = (width screen - (sum $ conky_width <$> bars')) `div` length (bars screen) - 1
+
 
 spawnBar :: (String, Int, Int, String) -> BarCommand
 spawnBar (conky, width, offset, align) = cmd ++ conky ++ " | " ++ dzen
@@ -266,5 +259,3 @@ mapFst f (x,y) = (f x, y)
 
 mapFst4 f (a,b,c,d) = (f a, b, c, d)
 uncurry4 f (a,b,c,d) = f a b c d
-
----------------------------------------------------------
