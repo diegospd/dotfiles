@@ -15,6 +15,7 @@ alias hugs="stack --system-ghc exec ghci -- -XOverloadedStrings"
 alias curry="stack --system-ghc install"
 
 ## XMonad
+alias resolution='xrandr | grep current'
 alias x_start='xmonad-x86_64-linux &'
 alias x_compile='killall dzen2 conky && stack --system-ghc exec xmonad-x86_64-linux -- --recompile'
 alias x_death='killall dzen2 conky'

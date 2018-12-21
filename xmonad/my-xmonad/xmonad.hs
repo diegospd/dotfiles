@@ -37,7 +37,7 @@ myWorkspaces = [">   1:tmp", "2:web", "3:webλ", "4:tesis", "5:floats", "6:comm"
 
 main ::IO ()
 main = do
-  say "sup man, guess what? it works! My master is Sdsowem! "
+  say "Gimme peas "
   mapM_ kill_if_running ["conky"]
   -- fix_keyboard
   -- wake_daemons

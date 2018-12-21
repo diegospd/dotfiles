@@ -21,7 +21,7 @@ pacman -Syyu --needed \
     opera chromium firefox \
     virtualbox virtualbox-host-modules-arch \
     ghc ghc-static \
-    conky dzen2 rofi pacman-contrib espeak \
+    conky dzen2 rofi pacman-contrib espeak xorg-xrandr\
     zsh ruby
 
 

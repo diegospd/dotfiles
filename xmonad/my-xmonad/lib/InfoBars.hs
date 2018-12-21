@@ -9,7 +9,7 @@ screenConf :: Screens
 screenConf = SConf {
     left = Nothing,
     right = Nothing,
-    middle = Just $ Screen 1920 1080 [
+    middle = Just $ Screen 1366 768 [
         bar_log,
         bar_clock,
         bar_date
@@ -60,20 +60,15 @@ data ScreenLabel = SLeft
                  | SRight deriving (Eq, Show, Ord)
 
 
-
 data InfoBar = Conky {
                  conky :: String,
                  conky_width :: Int,
                  conky_align :: String   --  c, l, r
                }
              | LogBar {
-                 log_width :: Int,
                  log_align :: String
              } deriving (Eq, Show, Ord)
 
-width :: InfoBar -> Int
-width x@Conky{} = conky_width x
-width x@LogBar{} = log_width x
 
 align :: InfoBar -> String
 align x@Conky{} = conky_align x
@@ -84,21 +79,14 @@ bar_wifi = Conky "wifi" 300 "c"
 bar_ethernet = Conky "ethernet" 300 "c"
 bar_cpu = Conky "cpu" 260 "c"
 bar_fs = Conky "fs" 400 "c"
-bar_clock = Conky "clock" 280 "r"
-bar_date = Conky "date" 240 "c"
+bar_clock = Conky "clock" 75 "c"
+bar_date = Conky "date" 210 "c"
 bar_arch = Conky "arch" 120 "c"
 bar_sound = Conky "sound" 80 "c"
-bar_log = LogBar 1400 "c"
-
-to_conky :: InfoBar -> Maybe InfoBar
-to_conky x@Conky{} = Just x
-to_conky _ = Nothing
-
+bar_log = LogBar "l"
 
 
 ----------------------------------------------
-logbar_width :: Screens -> Int
-logbar_width conf = log_width . head $ filter isLog (logbar_set conf)
 
 get_screens :: Screens -> [Screen]
 get_screens conf = catMaybes $ [left, middle, right] <*> [conf]
@@ -108,14 +96,24 @@ get_screens' conf = mapFst fromJust <$> filter (\(m,_) -> isJust m) screens'
     where screens' = zip  ([left, middle, right] <*> [conf])  [SLeft, SMiddle, SRight]
 
 
+
+logbar_width :: Screens -> Int
+logbar_width conf = total - sum (conky_width <$> bars)
+  where bars = filter (not . isLog) $ logbar_set conf
+        total = s_width $ logbar_screen conf
+
+
 get_bars :: Screens -> [[InfoBar]]
 get_bars conf = bars <$> get_screens conf
 
+logbar_screen :: Screens -> Screen
+logbar_screen conf = fromJust $ case logBarScreen conf of
+    SLeft -> left conf
+    SMiddle -> middle conf
+    SRight -> right conf
+
 logbar_set :: Screens -> [InfoBar]
-logbar_set conf = maybe [] bars $ case logBarScreen conf of
-                                   SLeft -> left conf
-                                   SMiddle -> middle conf
-                                   SRight -> right conf
+logbar_set = bars . logbar_screen
 
 
 logbar_offset :: Screens -> Int
@@ -166,8 +164,9 @@ infoBars = spawnBars screenConf
 -- infoBars' conf = spawnBar <$> vegeta `concatMap` with_offset conf
 
 with_offset :: Screens -> [(Screen, Int)]
-with_offset conf = (\(screen,label) -> (screen, screen_offset conf label)) <$> screens
+with_offset conf = (\(screen,label) -> (screen, extra screen + screen_offset conf label)) <$> screens
   where screens = get_screens' conf
+        extra screen = if any isLog (bars screen) then logbar_width conf else 0
 
 spawnBars :: Screens -> [BarCommand]
 spawnBars conf = spawnBars' `concatMap` with_offset conf 
@@ -175,12 +174,12 @@ spawnBars conf = spawnBars' `concatMap` with_offset conf
 
 spawnBars' :: (Screen, Int) -> [BarCommand]
 spawnBars' (screen, offset) =  spawnBar <$> options
-    where conkys = fmap conky <$> to_conky <$> bars screen
-          widths = width <$> bars screen
+    where conkys = filter (not . isLog) $ bars screen
+          widths = conky_width <$>  conkys
           offsets = [ offset + sum (take n widths) | n <- [0..] ]
           aligns = align <$> bars screen 
           options' = zip4 conkys widths offsets aligns
-          options = mapFst4 fromJust <$> filter (\(m,_,_,_) -> isJust m) options'
+          options = mapFst4 conky <$> options'
 
 -- vegeta :: (Screen, Int) -> [(String, Int, Int, String)]
 -- vegeta (screen, screen_offset) = (\x -> (conky x <> "Bar", conky_width x + blank_space, screen_offset, align x)) <$> bars'
