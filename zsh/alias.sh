@@ -17,9 +17,10 @@ alias curry="stack --system-ghc install"
 ## XMonad
 alias resolution='xrandr | grep current'
 alias x_start='xmonad-x86_64-linux &'
-alias x_compile='killall dzen2 conky && stack --system-ghc exec xmonad-x86_64-linux -- --recompile'
+alias x_compile='stack exec xmonad-x86_64-linux -- --recompile'
 alias x_death='killall dzen2 conky'
-alias x_restart='killall dzen2 conky && stack --system-ghc exec xmonad-x86_64-linux --restart'
+alias x_restart='stack exec xmonad-x86_64-linux -- --restart'
+alias x_hugs='cd ~/.xmonad && stack exec ghci xmonad.hs'
 
 alias aurLista='pacman -Qm'
 alias mirrors='sudo reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist'

@@ -51,7 +51,7 @@ launchers =
     , ("M-m", spawn "ksysguard")
     , ("M-v", spawn "keepassx")
     , ("M-k", spawn "ktorrent")
-    , ("M-x x", openSubl "~/.dotfiles/xmonad/xmonad.hs")
+    , ("M-x x", openSubl "")
     , ("M-x k", openSubl "~/.dotfiles/xmonad/Keys.hs")
     , ("M-x i", openSubl "~/.dotfiles/xmonad/InfoBars.hs")
     , ("M-x z", openSubl "~/.zshrc")
