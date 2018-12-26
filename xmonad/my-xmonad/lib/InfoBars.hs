@@ -4,21 +4,37 @@ import Data.Maybe
 import Data.List
 import Control.Monad.Reader
 
+screenConf = conf_1280_1920
+-- screenConf = conf_1280
 
--- screenConf :: Screens
--- screenConf = SConf {
---     left = Nothing,
---     right = Nothing,
---     middle = Just $ Screen 1366 768 [
---         bar_log,
---         bar_clock,
---         bar_date
---     ],
---     logBarScreen = SMiddle
--- }
+conf_1366 :: Screens
+conf_1366 = SConf {
+    left = Nothing,
+    right = Nothing,
+    middle = Just $ Screen 1366 768 [
+        bar_log,
+        bar_clock,
+        bar_date
+    ],
+    logBarScreen = SMiddle
+}
 
-screenConf :: Screens
-screenConf = SConf {
+conf_1280 :: Screens
+conf_1280 = SConf {
+    left = Just $ Screen 1280 1024 [
+        bar_log,
+        bar_clock,
+        bar_date
+    ],
+    middle = Nothing,
+    right = Nothing,
+    logBarScreen = SMiddle
+}
+
+
+
+conf_1280_1920 :: Screens
+conf_1280_1920 = SConf {
     left = Just $ Screen 1280 1024 [
         bar_wifi,
         bar_ethernet,
@@ -78,7 +94,7 @@ align x@LogBar{} = log_align x
 bar_wifi = Conky "wifi" 150 "c"
 bar_ethernet = Conky "ethernet" 150 "c"
 bar_cpu = Conky "cpu" 260 "c"
-bar_fs = Conky "fs" 400 "c"
+bar_fs = Conky "fs" 400 "r"
 bar_clock = Conky "clock" 75 "c"
 bar_date = Conky "date" 210 "c"
 bar_arch = Conky "arch" 140 "c"
@@ -171,7 +187,9 @@ spawnBars conf = spawnBars' `concatMap` with_offset conf
 spawnBars' :: (Screen, Int) -> [BarCommand]
 spawnBars' (screen, offset) =  spawnBar <$> options
     where conkys = filter (not . isLog) $ bars screen
-          widths = conky_width <$>  conkys
+          widths' = conky_width <$>  conkys
+          extra = div (s_width screen - sum widths') (length $ filter (not . isLog) (bars screen))
+          widths = (extra +) <$> widths'
           offsets = [ offset + sum (take n widths) | n <- [0..] ]
           aligns = align <$> bars screen 
           options' = zip4 conkys widths offsets aligns
