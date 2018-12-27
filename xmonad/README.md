@@ -11,4 +11,5 @@ https://wiki.haskell.org/Xmonad/Config_archive#Modular_configs
  -  https://wiki.haskell.org/Xmonad/Using_xmonad_in_KDE
 
 
+- http://sitr.us/2018/05/13/build-xmonad-with-stack.html
  julio 31 2016

@@ -1,0 +1,2 @@
+- activa Control Alt Backspace para matar X
+- Quita keyboard shortcuts para M-q, M-Tab

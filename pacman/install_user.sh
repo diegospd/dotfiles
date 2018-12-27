@@ -1,7 +1,9 @@
 #!/bin/bash
 
 aurman -Syyu --needed --noconfirm \
+      aurman \
       unclutter-xfixes-git \
+      xmeasure \
       sublime-text-dev \
       dropbox droxi dropbox-cli \
       systemd-kcm \
@@ -12,11 +14,13 @@ aurman -Syyu --needed --noconfirm \
 
 
 ## Make sure ~/.local/bin is in your $PATH
-# stack install --system-ghc \
-#       xmonad xmonad-contrib turtle \
-#       cabal-install \
-#       alex happy hlint
-# cabal update
+stack install --system-ghc \
+      xmonad xmonad-contrib \
+      turtle \
+      cabal-install \
+      alex happy hlint
+
+cabal update
 # cabal install hsdev ghc-mod
 
 
