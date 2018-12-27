@@ -25,6 +25,7 @@ alias x_hugs='cd ~/.xmonad && stack exec ghci xmonad.hs'
 alias aurLista='pacman -Qm'
 alias mirrors='sudo reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist'
 alias hosts='sudo nano /etc/hosts'
+alias router='ip route | grep default'
 prende() {
   sudo mount /dev/mapper/shelf4tb /mnt/shelf && \
   sudo systemctl start emby-server.service
