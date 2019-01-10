@@ -2,7 +2,6 @@
 
 aurman -Syyu --needed --noconfirm \
       aurman \
-      unclutter-xfixes-git \
       xmeasure \
       sublime-text-dev \
       dropbox droxi dropbox-cli \

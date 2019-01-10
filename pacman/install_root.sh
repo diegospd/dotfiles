@@ -22,6 +22,7 @@ pacman -Syyu --needed \
     virtualbox virtualbox-host-modules-arch \
     ghc ghc-static \
     conky dzen2 rofi pacman-contrib espeak xorg-xrandr\
+    unclutter \
     zsh ruby ruby-rdoc
 
 
