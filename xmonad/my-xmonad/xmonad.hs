@@ -1,4 +1,5 @@
  {-# LANGUAGE OverloadedStrings #-}
+ {-# LANGUAGE BangPatterns #-}
 
 
 module Main (main) where
@@ -38,20 +39,20 @@ myWorkspaces = [">   1:tmp", "2:web", "3:webλ", "4:tesis", "5:floats", "6:comm"
 main ::IO ()
 main = do
   say "Gimme peas "
-  mapM_ kill_if_running ["conky"]
+  -- mapM_ kill_if_running ["conky"]
   -- fix_keyboard
   -- wake_daemons
-  workspaceBar <- spawnPipe logBar
+  !workspaceBar <- spawnPipe logBar
   mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig
       { modMask            = myMod
       , terminal           = "konsole"
       , workspaces         = myWorkspaces
       , manageHook         = manageHook myConfig <+> manageDocks 
-      , layoutHook         = avoidStruts  (layoutHook myConfig)
+      , layoutHook         = layoutHook myConfig -- avoidStruts  (layoutHook myConfig)
       , handleEventHook    = handleEventHook myConfig <+> docksEventHook 
       , startupHook        = startupHook myConfig <+> docksStartupHook  <+> return () >> checkKeymap myConfig theKeys
-      , logHook            = myLogHook workspaceBar >> fadeInactiveLogHook 0xdddddddd
+      , logHook            = myLogHook workspaceBar >> fadeInactiveLogHook 0.8
       , borderWidth        = 4
       , normalBorderColor  = "#000000"
       , focusedBorderColor = "#7B68EE"
