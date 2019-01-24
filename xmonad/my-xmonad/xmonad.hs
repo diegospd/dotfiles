@@ -8,6 +8,9 @@ import Bash
 import InfoBars
 import Keys
 import Hooks
+import Daemons
+
+
 --------------------------------------------------------------------------------
 
 import XMonad
@@ -18,9 +21,9 @@ import XMonad.Config.Desktop(desktopConfig)
 
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
-
-
 --------------------------------------------------------------------------------
+
+
 
 myConfig = desktopConfig
           `removeKeysP` forbiddenKeys
@@ -30,10 +33,7 @@ myConfig = desktopConfig
 
 main ::IO ()
 main = do
-  say "May the force be with you"
-  -- mapM_ kill_if_running ["conky"]
-  -- fix_keyboard
-  -- wake_daemons
+  wake_daemons
   !workspaceBar <- spawnPipe logBar
   mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig

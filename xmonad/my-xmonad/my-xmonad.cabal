@@ -10,6 +10,7 @@ executable xmonad-x86_64-linux
                      , InfoBars
                      , Keys
                      , Hooks
+                     , Daemons
   build-depends:       base
                      , xmonad
                      , xmonad-contrib
