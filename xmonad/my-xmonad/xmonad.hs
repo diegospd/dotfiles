@@ -9,17 +9,13 @@ import InfoBars
 import Keys
 import Hooks
 --------------------------------------------------------------------------------
-import Data.List
-import Data.Monoid(Endo)
-import Turtle
+
 import XMonad
 import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys,removeKeys,additionalKeysP,removeKeysP,checkKeymap)
+import XMonad.Util.EZConfig(additionalKeys,additionalKeysP,removeKeysP,checkKeymap)
 import XMonad.Config.Desktop(desktopConfig)
 --------------------------------------------------------------------------------
 
--- import System.IO(hPutStrLn)
-import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 
@@ -32,13 +28,9 @@ myConfig = desktopConfig
           `additionalKeysP` theKeys
 
 
-myWorkspaces :: [String]
-myWorkspaces = [">   1:tmp", "2:web", "3:webλ", "4:tesis", "5:floats", "6:comm" ,"7:admin", "8:daemon", "9:buffer"]
-
-
 main ::IO ()
 main = do
-  say "Gimme peas "
+  say "May the force be with you"
   -- mapM_ kill_if_running ["conky"]
   -- fix_keyboard
   -- wake_daemons
@@ -48,7 +40,7 @@ main = do
       { modMask            = myMod
       , terminal           = "konsole"
       , workspaces         = myWorkspaces
-      , manageHook         = manageHook myConfig <+> manageDocks 
+      , manageHook         = manageHook myConfig <+> myManageHook 
       , layoutHook         = layoutHook myConfig -- avoidStruts  (layoutHook myConfig)
       , handleEventHook    = handleEventHook myConfig <+> docksEventHook 
       , startupHook        = startupHook myConfig <+> docksStartupHook  <+> return () >> checkKeymap myConfig theKeys
@@ -57,5 +49,3 @@ main = do
       , normalBorderColor  = "#000000"
       , focusedBorderColor = "#7B68EE"
       }
-
-

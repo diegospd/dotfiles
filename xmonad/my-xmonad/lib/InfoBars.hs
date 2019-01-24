@@ -4,8 +4,8 @@ import Data.Maybe
 import Data.List
 import Control.Monad.Reader
 
-screenConf = conf_1366
--- screenConf = conf_1280_1920
+-- screenConf = conf_1366
+screenConf = conf_1280_1920
 -- screenConf = conf_1280
 
 conf_1366 :: Screens
@@ -58,18 +58,18 @@ conf_1280_1920 = SConf {
 ------------------------------------------------------------------
 
 
-data Screen = Screen {
-    s_width :: Int,
+data Screen  = Screen {
+    s_width  :: Int,
     s_height :: Int,
-    bars :: [InfoBar]
+    bars     :: [InfoBar]
 } deriving (Eq, Show, Ord)
 
 
 
-data Screens = SConf {
-    left :: Maybe Screen,
-    middle :: Maybe Screen,
-    right :: Maybe Screen,
+data Screens     = SConf {
+    left         :: Maybe Screen,
+    middle       :: Maybe Screen,
+    right        :: Maybe Screen,
     logBarScreen :: ScreenLabel
 }
 
@@ -79,7 +79,7 @@ data ScreenLabel = SLeft
 
 
 data InfoBar = Conky {
-                 conky :: String,
+                 conky       :: String,
                  conky_width :: Int,
                  conky_align :: String   --  c, l, r
                }
@@ -93,15 +93,15 @@ align x@Conky{} = conky_align x
 align x@LogBar{} = log_align x
 
 
-bar_wifi = Conky "wifi" 210 "c"
+bar_log      = LogBar "l"
+bar_wifi     = Conky "wifi"     210 "c"
 bar_ethernet = Conky "ethernet" 150 "c"
-bar_cpu = Conky "cpu" 260 "c"
-bar_fs = Conky "fs" 400 "r"
-bar_clock = Conky "clock" 75 "c"
-bar_date = Conky "date" 210 "c"
-bar_arch = Conky "arch" 140 "c"
-bar_sound = Conky "sound" 85 "c"
-bar_log = LogBar "l"
+bar_cpu      = Conky "cpu"      260 "c"
+bar_fs       = Conky "fs"       400 "r"
+bar_clock    = Conky "clock"    75  "c"
+bar_date     = Conky "date"     250 "c"
+bar_arch     = Conky "arch"     140 "c"
+bar_sound    = Conky "sound"    85  "c"
 
 
 ----------------------------------------------
@@ -117,7 +117,7 @@ get_screens' conf = mapFst fromJust <$> filter (\(m,_) -> isJust m) screens'
 
 logbar_width :: Screens -> Int
 logbar_width conf = total - sum (conky_width <$> bars)
-  where bars = filter (not . isLog) $ logbar_set conf
+  where bars  = filter (not . isLog) $ logbar_set conf
         total = s_width $ logbar_screen conf
 
 
@@ -126,9 +126,9 @@ get_bars conf = bars <$> get_screens conf
 
 logbar_screen :: Screens -> Screen
 logbar_screen conf = fromJust $ case logBarScreen conf of
-    SLeft -> left conf
+    SLeft   -> left conf
     SMiddle -> middle conf
-    SRight -> right conf
+    SRight  -> right conf
 
 is_logbar_screen :: Screen -> Bool
 is_logbar_screen screen = any isLog $ bars screen
@@ -143,12 +143,12 @@ logbar_offset conf = sum $ conky_width <$> takeWhile (not . isLog) bars
 
 isLog :: InfoBar -> Bool
 isLog LogBar{} = True
-isLog _ = False
+isLog _        = False
 
 screen_offset :: Screens -> ScreenLabel -> Int
-screen_offset _ SLeft = 0
+screen_offset _ SLeft      = 0
 screen_offset conf SMiddle = maybe 0 s_width (left conf)
-screen_offset conf SRight = maybe 0 s_width (middle conf) + screen_offset conf SMiddle
+screen_offset conf SRight  = maybe 0 s_width (middle conf) + screen_offset conf SMiddle
 
 logBar' :: Screens -> BarCommand
 logBar' conf = mkDzen' offset (logbar_width conf) "l"
@@ -182,7 +182,7 @@ infoBars = spawnBars screenConf
 
 with_offset :: Screens -> [(Screen, Int)]
 with_offset conf = (\(screen,label) -> (screen, extra screen + screen_offset conf label)) <$> screens
-  where screens = get_screens' conf
+  where screens      = get_screens' conf
         extra screen = if any isLog (bars screen) then logbar_width conf else 0
 
 spawnBars :: Screens -> [BarCommand]
@@ -191,25 +191,25 @@ spawnBars conf = spawnBars' `concatMap` with_offset conf
 
 spawnBars' :: (Screen, Int) -> [BarCommand]
 spawnBars' (screen, offset) =  spawnBar <$> options
-    where conkys = filter (not . isLog) $ bars screen
-          widths' = conky_width <$>  conkys
-          extra = extra_space screen
-          widths = (extra +) <$> widths'
-          offsets = [ offset + sum (take n widths) | n <- [0..] ]
-          aligns = align <$> bars screen 
+    where conkys   = filter (not . isLog) $ bars screen
+          widths'  = conky_width <$>  conkys
+          extra    = extra_space screen
+          widths   = (extra +) <$> widths'
+          offsets  = [ offset + sum (take n widths) | n <- [0..] ]
+          aligns   = align <$> bars screen 
           options' = zip4 conkys widths offsets aligns
-          options = mapFst4 conky <$> options'
+          options  = mapFst4 conky <$> options'
 
 extra_space :: Screen -> Int
 extra_space screen
     | is_logbar_screen screen = 0
-    | otherwise =  div (s_width screen - (sum $ conky_width <$> bars screen))  (length $ bars screen)
+    | otherwise = div (s_width screen - (sum $ conky_width <$> bars screen))  (length $ bars screen)
 
 
 
 spawnBar :: (String, Int, Int, String) -> BarCommand
 spawnBar (conky, width, offset, align) = cmd ++ conky ++ " | " ++ dzen
-    where cmd = "conky -c ~/.xmonad/conky/"
+    where cmd  = "conky -c ~/.xmonad/conky/"
           dzen = mkDzen' offset width align
 
 
@@ -222,18 +222,18 @@ spawnAll :: Int
          -> [BarCommand]
          -- ^ the command needed to spawn the (dzen2 + conky) bar
 spawnAll off len bars = spawnBar <$> bars''
-    where bars' = spreadBars len bars
+    where bars'  = spreadBars len bars
           bars'' = snd $ mapAccumL (\x (s, l) -> (x + l, (s, l, x, "c") )) off bars'
 
 -- | Adds spaces among bars given the length of the target screen
 spreadBars :: Int -> [(String, Int)] -> [(String, Int)]
 spreadBars _ [] = []
 spreadBars len bars = bars''
-  where needed = sum $ snd <$> bars
-        space = (len - needed) `div` length bars
+  where needed  = sum $ snd <$> bars
+        space   = (len - needed) `div` length bars
         luckies = mod space (length bars)
-        bars' = mapSnd (+ space) <$> bars
-        bars'' = (mapSnd (+ 1) <$> take luckies bars') ++ drop luckies bars' 
+        bars'   = mapSnd (+ space) <$> bars
+        bars''  = (mapSnd (+ 1) <$> take luckies bars') ++ drop luckies bars' 
 
 
 
@@ -280,10 +280,8 @@ conkyIcon icon = "^i(" ++ bitmapsDir ++ "/" ++ icon ++ ")"
   -- si uso $HOME o ~ no funciona los iconos del logBar
   where bitmapsDir = "/home/diego/.xmonad/dzen2/"
 
-mapSnd :: (a -> b) -> (c, a) -> (c, b)
-mapSnd f (x,y) = (x,f y)
 
-mapFst f (x,y) = (f x, y)
-
-mapFst4 f (a,b,c,d) = (f a, b, c, d)
+mapSnd   f (x,y)     = (x,f y)
+mapFst   f (x,y)     = (f x, y)
+mapFst4  f (a,b,c,d) = (f a, b, c, d)
 uncurry4 f (a,b,c,d) = f a b c d
