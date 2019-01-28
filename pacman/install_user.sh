@@ -9,7 +9,8 @@ aurman -Syyu --needed --noconfirm \
       diskmonitor \
       google-chrome \
       spotify ffmpeg-compat-54 \
-      gitkraken postman-bin
+      gitkraken postman-bin \
+      leiningen
 
 
 ## Make sure ~/.local/bin is in your $PATH

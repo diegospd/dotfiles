@@ -23,7 +23,8 @@ pacman -Syyu --needed \
     ghc ghc-static \
     conky dzen2 rofi pacman-contrib espeak xorg-xrandr\
     unclutter \
-    zsh ruby ruby-rdoc
+    zsh ruby ruby-rdoc \
+    clojure
 
 
 
