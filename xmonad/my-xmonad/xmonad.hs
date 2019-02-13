@@ -19,7 +19,24 @@ import XMonad.Config.Desktop(desktopConfig)
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 
+---
+import Data.Text
+import Turtle
 
+
+daemons :: [Daemon]
+daemons = [
+    OneTime "kb" []
+  , OneTime "unclutter" []  ]
+
+
+data Daemon = OneTime { cmd :: Text, args :: [Text] } deriving (Eq, Show, Ord)
+
+wake :: MonadIO io => Daemon -> io ExitCode
+wake x@OneTime{} = proc (cmd x) (args x) ""
+
+wake_daemons :: MonadIO io => io ()
+wake_daemons = mapM_ wake daemons
 --------------------------------------------------------------------------------
 
 myConfig = desktopConfig
@@ -30,10 +47,8 @@ myConfig = desktopConfig
 
 main ::IO ()
 main = do
-  say "May the force be with you"
-  -- mapM_ kill_if_running ["conky"]
-  -- fix_keyboard
-  -- wake_daemons
+  say "Peace is a lie"
+  wake_daemons
   !workspaceBar <- spawnPipe logBar
   mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig
