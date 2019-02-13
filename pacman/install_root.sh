@@ -5,9 +5,10 @@
 
 ## git should already be installed
 
-pacman -Syyu --needed \
+pacman -Syyu --needed --noconfirm --overwrite \
     sddm xorg-server \
     plasma-desktop kde-applications-meta phonon-qt5-vlc \
+    flameshot \
     dolphin dolphin-plugins encfs nfs-utils fuse3 \
     filelight testdisk gparted smartmontools gsmartcontrol \
     tree hwinfo htop \
@@ -24,7 +25,8 @@ pacman -Syyu --needed \
     conky dzen2 rofi pacman-contrib espeak xorg-xrandr\
     unclutter \
     zsh ruby ruby-rdoc \
-    clojure
+    clojure \
+    steam ttf-liberation 
 
 
 

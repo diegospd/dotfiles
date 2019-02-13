@@ -7,9 +7,9 @@ import XMonad.Actions.WindowBringer
 
 
 import Bash
--- import Data.Text hiding(concat, unwords, intersperse,zip)
 import Prelude hiding (sequence)
-import Data.List
+import GHC.Base(when)
+import Turtle(sleep)
 
 import XMonad.Hooks.ManageDocks
 import qualified XMonad.StackSet as W -- to shift and float windows
@@ -59,6 +59,7 @@ launchers =
     , ("M-x p", openSubl "~/storage/codigos/haskell/pol")
     , ("M-S-<KP_Enter>", spawn "konsole -e ~/.local/bin/pol")
     , ("M-S-<KP_Subtract>", spawn "echo \"cd ~/storage/crypto/tor-browser_en-US && ./start-tor-browser.desktop\" | bash")
+    , ("M-i", say "flameshot gui")
     ]
 
 openSubl :: String -> X ()
@@ -67,10 +68,14 @@ openSubl path = spawn $ "subl3 --new-window " <> path
 multimedia :: [KeyBinding]
 multimedia =  
     [
-      ("M-<KP_Add>", spawn $ spotify "PlayPause")
+      ("M-<KP_Add>", launch_and_play)
     , ("M-<KP_Multiply>", spawn $ spotify "Previous")
     , ("M-<KP_Subtract>", spawn $ spotify "Next")
-    ] where spotify = ("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player." ++)
+    ] where spotify = (++) "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."
+            launch_and_play = do
+                running <- is_running "spotify"
+                when (not running) $ spawn "spotify" >> sleep 5.0
+                spawn $ spotify "PlayPause"
 
 
 dolphin :: [KeyBinding] 
@@ -123,21 +128,6 @@ admin =
     ]
 
 
-
-
-
-
-pad_cmd :: String -> BashCommand
-pad_cmd c = " " <> c <> " "
-
-sequence :: [String] -> BashCommand
-sequence xs = pad_cmd $ concat $ intersperse " && " (pad_cmd <$> xs) 
-
-type BashCommand = String 
-
-if_xmonad_is_running :: BashCommand -> BashCommand -> BashCommand
-if_xmonad_is_running when_true when_false = pad_cmd $ concat xs
-    where xs = ["if type xmonad; then ", when_true, " ; else ", when_false, " ; fi"]
 
 restart_pulseaudio = spawn "pulseaudio -k || pulseaudio --start"
 

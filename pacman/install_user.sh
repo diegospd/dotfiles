@@ -1,6 +1,6 @@
 #!/bin/bash
 
-aurman -Syyu --needed --noconfirm \
+aurman -Syyu --needed --noconfirm --noedit \
       aurman \
       xmeasure \
       sublime-text-dev \
@@ -10,7 +10,9 @@ aurman -Syyu --needed --noconfirm \
       google-chrome \
       spotify ffmpeg-compat-54 \
       gitkraken postman-bin \
-      leiningen
+      leiningen \
+      lib32-mesa \
+      masterpdfeditor-free
 
 
 ## Make sure ~/.local/bin is in your $PATH
