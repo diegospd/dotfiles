@@ -17,6 +17,7 @@ executable my-xmonad
                      , turtle
                      , mtl
                      , text
+                     , deepseq
   hs-source-dirs:      lib
   default-language:    Haskell2010
   ghc-options:         -Wall -fno-warn-missing-signatures -threaded

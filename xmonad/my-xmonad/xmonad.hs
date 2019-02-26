@@ -23,7 +23,26 @@ import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 --------------------------------------------------------------------------------
 
+---
+import Data.Text
+import Turtle
+import Control.Concurrent(forkIO)
 
+daemons :: [Daemon]
+daemons = [
+    OneTime "kb" []
+  , OneTime "espeak" ["waking daemons"]
+  , OneTime "unclutter" []  ]
+
+
+data Daemon = OneTime { cmd :: Text, args :: [Text] } deriving (Eq, Show, Ord)
+
+wake :: MonadIO io => Daemon -> io ExitCode
+wake x@OneTime{} = proc (cmd x) (args x) ""
+
+wake_daemons :: MonadIO io => io ()
+wake_daemons = mapM_ wake daemons
+--------------------------------------------------------------------------------
 
 myConfig = desktopConfig
           `removeKeysP` forbiddenKeys
@@ -33,7 +52,9 @@ myConfig = desktopConfig
 
 main ::IO ()
 main = do
-  wake_daemons
+  -- wake_daemons
+  say "Peace is a lie"
+  -- !_ <- forkIO wake_daemons
   !workspaceBar <- spawnPipe logBar
   mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig

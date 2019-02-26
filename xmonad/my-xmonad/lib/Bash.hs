@@ -33,7 +33,3 @@ is_running program = do
     return $ case exitCode of
         ExitSuccess -> True
         ExitFailure{} -> False
-
-xmonad_bin :: Text
-xmonad_bin = "xmonad-x86_64-linux"
-
