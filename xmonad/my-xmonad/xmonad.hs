@@ -22,11 +22,13 @@ import XMonad.Hooks.ManageDocks
 ---
 import Data.Text
 import Turtle
+import Control.Concurrent(forkIO)
 
 
 daemons :: [Daemon]
 daemons = [
     OneTime "kb" []
+  , OneTime "espeak" ["waking daemons"]
   , OneTime "unclutter" []  ]
 
 
@@ -48,7 +50,7 @@ myConfig = desktopConfig
 main ::IO ()
 main = do
   say "Peace is a lie"
-  wake_daemons
+  !_ <- forkIO wake_daemons
   !workspaceBar <- spawnPipe logBar
   mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig

@@ -1,4 +1,6 @@
- {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE BangPatterns #-}
+
 
 module Keys (myKeys, theKeys, forbiddenKeys, myMod) where
 
@@ -10,6 +12,7 @@ import Bash
 import Prelude hiding (sequence)
 import GHC.Base(when)
 import Turtle(sleep)
+import Control.DeepSeq
 
 import XMonad.Hooks.ManageDocks
 import qualified XMonad.StackSet as W -- to shift and float windows
@@ -68,14 +71,23 @@ openSubl path = spawn $ "subl3 --new-window " <> path
 multimedia :: [KeyBinding]
 multimedia =  
     [
-      ("M-<KP_Add>", launch_and_play)
+      ("M-<KP_Add>", spawn $ spotify "PlayPause")
     , ("M-<KP_Multiply>", spawn $ spotify "Previous")
     , ("M-<KP_Subtract>", spawn $ spotify "Next")
-    ] where spotify = (++) "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."
-            launch_and_play = do
-                running <- is_running "spotify"
-                when (not running) $ spawn "spotify" >> sleep 5.0
-                spawn $ spotify "PlayPause"
+    ]
+
+spotify :: String -> String
+spotify = (++) "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."
+
+launch_and_play :: X ()
+launch_and_play = do
+    !running <- is_running "spotify"
+    !check <- when (not running) $ do
+        spawn "spotify"
+        sleep 5.0
+    !go <- spawn $ spotify "PlayPause"
+    return ()
+    
 
 
 dolphin :: [KeyBinding] 
