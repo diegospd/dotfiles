@@ -18,7 +18,7 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys,additionalKeysP,removeKeysP,checkKeymap)
 import XMonad.Config.Desktop(desktopConfig)
 --------------------------------------------------------------------------------
-
+import XMonad.Hooks.SetWMName
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 --------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ main = do
       , layoutHook         = layoutHook myConfig -- avoidStruts  (layoutHook myConfig)
       , handleEventHook    = handleEventHook myConfig <+> docksEventHook 
       , startupHook        = startupHook myConfig <+> docksStartupHook  <+> return () >> checkKeymap myConfig theKeys
-      , logHook            = myLogHook workspaceBar >> fadeInactiveLogHook 0.8
+      , logHook            = myLogHook workspaceBar >> fadeInactiveLogHook 0.8 >> setWMName "LG3D"
       , borderWidth        = 4
       , normalBorderColor  = "#000000"
       , focusedBorderColor = "#7B68EE"
