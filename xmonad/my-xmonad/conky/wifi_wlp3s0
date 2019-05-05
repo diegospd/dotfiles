@@ -5,7 +5,7 @@ out_to_x no
 update_interval 1
  
 TEXT
- ${addr wlp3s0}      \
+${wireless_essid wlp3s0}: ${addr wlp3s0}      \
 ^fg(\#ebac54)${if_existing /proc/net/route wlp3s0}^i(/home/diego/.xmonad/dzen2/wifi_02.xbm) \
 ^fg(\#00aa4a)^i(/home/diego/.xmonad/dzen2/net_down_03.xbm)${downspeed wlp3s0}  \
 ^fg(\#ff3333)^i(/home/diego/.xmonad/dzen2/net_up_03.xbm)${upspeed wlp3s0}
