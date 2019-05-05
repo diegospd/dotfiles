@@ -53,8 +53,10 @@ myConfig = desktopConfig
 main ::IO ()
 main = do
   -- wake_daemons
-  say "Peace is a lie"
+  say "there's only passion"
   -- !_ <- forkIO wake_daemons
+  spawn "unclutter"
+  spawn "kb"
   !workspaceBar <- spawnPipe logBar
   mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig

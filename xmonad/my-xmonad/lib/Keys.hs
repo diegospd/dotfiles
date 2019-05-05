@@ -18,6 +18,7 @@ import XMonad.Hooks.ManageDocks
 import qualified XMonad.StackSet as W -- to shift and float windows
 import qualified XMonad.Util.ExtensibleState as XS
 
+-- TODO take mouse to active screen
 
 myMod :: KeyMask
 myMod = mod4Mask
@@ -53,6 +54,7 @@ launchers =
     , ("M-S-/", spawn "google-chrome-stable")
     , ("M-m", spawn "ksysguard")
     , ("M-v", spawn "keepassx")
+    , ("M-S-v", spawn "keepass")
     , ("M-k", spawn "ktorrent")
     , ("M-x x", openSubl "")
     , ("M-x k", openSubl "~/.dotfiles/xmonad/Keys.hs")
@@ -62,7 +64,7 @@ launchers =
     , ("M-x p", openSubl "~/storage/codigos/haskell/pol")
     , ("M-S-<KP_Enter>", spawn "konsole -e ~/.local/bin/pol")
     , ("M-S-<KP_Subtract>", spawn "echo \"cd ~/storage/crypto/tor-browser_en-US && ./start-tor-browser.desktop\" | bash")
-    , ("M-i", say "flameshot gui")
+    , ("M-i", spawn "flameshot gui")
     ]
 
 openSubl :: String -> X ()
@@ -130,6 +132,7 @@ admin :: [KeyBinding]
 admin =
     [
       ("M-p", run_rofi)
+    , ("M-o", run_rofi)
     , ("M-b", toggleBars)
     , ("M-a p", run_rofi)
     , ("M-a <Backspace>", spawn "xmonad-x86_64-linux --restart")

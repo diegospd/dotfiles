@@ -32,7 +32,7 @@ myManageHook = manageDocks <+> (composeAll . concat)
     , [ className   =? c --> (doShift . mySpace) 8 | c <- myDaemon]
     , [ className   =? c --> (doShift . mySpace) 6 | c <- myComm]
     ]
-  where myFloats      = [ "vdpau", "mplayer", "Gimp",  "plasmashell"] --"kwalletd5", "MPlayer",
+  where myFloats      = ["vdpau", "mplayer", "Gimp",  "plasmashell"] --"kwalletd5", "MPlayer", "jetbrains-idea-ce","spectacle"
         myOtherFloats = ["alsamixer", "MPlayer", "vdpau", "mplayer" ]
         myDaemon      = [] -- ["Spotify", "ksysguard", "ktorrent"]  
         myComm        = [] -- ["Xchat"] 
