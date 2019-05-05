@@ -17,7 +17,7 @@ pacman -Syyu --needed --noconfirm --overwrite \
     ktorrent subdownloader \
     vlc mplayer kaffeine \
     rhythmbox audacity \
-    keepassx \
+    keepass\
     texlive-most kile \
     opera chromium firefox \
     virtualbox virtualbox-host-modules-arch \

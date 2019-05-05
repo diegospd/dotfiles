@@ -1,3 +1,10 @@
+alias aurUpdate='aurman -S aurman \
+                         dropbox dropbox-cli droxi \
+                         gitkraken google-chrome popcorntime \
+                         spotify stack-bin sublime-text-dev \
+                         masterpdfeditor-free \
+                         keepassx \
+                         --noconfirm --noedit --needed'
 
 ## Temp
 alias nubank='cd ~/storage/codigos/chambas/nubank'

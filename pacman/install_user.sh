@@ -9,8 +9,9 @@ aurman -Syyu --needed --noconfirm --noedit \
       diskmonitor \
       google-chrome \
       spotify ffmpeg-compat-54 \
-      davinci-resolve \
+     # davinci-resolve \
       gitkraken postman-bin \
+      keepassx \
       leiningen \
       lib32-mesa blockout2 \
       masterpdfeditor-free
