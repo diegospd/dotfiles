@@ -5,10 +5,14 @@ alias aurUpdate='aurman -S aurman \
                          masterpdfeditor-free \
                          keepassx \
                          --noconfirm --noedit --needed'
+# ninjutsu
+alias pulse-reinit='pulseaudio -k ; pulseaudio -D]'
 
 ## Temp
-alias nubank='cd ~/storage/codigos/chambas/nubank'
-alias iswim='cd ~/storage/codigos/haskell/iswim'
+alias cdnu='cd $NU_HOME'
+alias cdel='cd $NU_HOME/el-surrender/'
+alias lint='lein lint-fix && git add . && git commit -m "+lein lint-fix"'
+
 
 alias ed='subl3'
 
