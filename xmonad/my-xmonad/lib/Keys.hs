@@ -120,11 +120,12 @@ runDolphin path = spawn $ "dolphin " <> path
 konsole :: [KeyBinding] 
 konsole =
     [
-      ("M-\\ s", spawn "konsole --workdir ~/shelf")
-    , ("M-\\ d", spawn "konsole --workdir ~/Dropbox")
-    , ("M-\\ v", spawn "konsole --workdir ~/shelf/video/")
-    , ("M-\\ x", spawn "konsole --workdir ~/.dotfiles/xmonad/")
-    ] 
+      ("M-\\ s", spawn $ cmd "~/shelf")
+    , ("M-\\ d", spawn $ cmd "~/Dropbox")
+    , ("M-\\ v", spawn $ cmd "~/shelf/video/")
+    , ("M-\\ x", spawn $ cmd "~/.dotfiles/xmonad/")
+    ]
+    where cmd = (<>) "konsole --profile dieg --workdir "
 
 
 
