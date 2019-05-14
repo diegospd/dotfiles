@@ -25,7 +25,7 @@ pacman -Syyu --needed --noconfirm --overwrite \
     conky dzen2 rofi pacman-contrib espeak xorg-xrandr\
     unclutter \
     zsh ruby ruby-rdoc \
-    code clojure \
+    intellij-idea-community-edition clojure \
     steam ttf-liberation 
 
 
