@@ -3,6 +3,7 @@ alias aurUpdate='aurman -S aurman \
                          gitkraken google-chrome popcorntime \
                          spotify stack-bin sublime-text-dev \
                          masterpdfeditor-free \
+                         pyrenamer \
                          keepassx \
                          --noconfirm --noedit --needed'
 # ninjutsu
