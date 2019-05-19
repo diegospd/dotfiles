@@ -21,6 +21,7 @@ import XMonad.Config.Desktop(desktopConfig)
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.Spiral -- TODO move to hooks
 --------------------------------------------------------------------------------
 
 ---
@@ -64,7 +65,7 @@ main = do
       , terminal           = "konsole --profile dieg"
       , workspaces         = myWorkspaces
       , manageHook         = manageHook myConfig <+> myManageHook 
-      , layoutHook         = layoutHook myConfig -- avoidStruts  (layoutHook myConfig)
+      , layoutHook         = spiral (6/7) ||| layoutHook myConfig -- avoidStruts  (layoutHook myConfig)
       , handleEventHook    = handleEventHook myConfig <+> docksEventHook 
       , startupHook        = startupHook myConfig <+> docksStartupHook  <+> return () >> checkKeymap myConfig theKeys
       , logHook            = myLogHook workspaceBar >> fadeInactiveLogHook 0.8 >> setWMName "LG3D"
