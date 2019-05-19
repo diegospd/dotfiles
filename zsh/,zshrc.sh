@@ -66,3 +66,4 @@ source ~/.dotfiles/zsh/export.sh
 source ~/.dotfiles/zsh/alias.sh
 source ~/.dotfiles/zsh/utils.sh
 source ~/.dotfiles/zsh/init.sh
+source ~/.dotfiles/zsh/hosts.sh
