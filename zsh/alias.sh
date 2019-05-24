@@ -12,7 +12,7 @@ alias pulse-reinit='pulseaudio -k ; pulseaudio -D]'
 ## Temp
 alias cdnu='cd $NU_HOME'
 alias cdel='cd $NU_HOME/el-surrender/'
-alias lint='lein lint-fix && git add . && git commit -m "+lein lint-fix"'
+alias lintPush='lein lint-fix && git add . && git commit -m "+lein lint-fix" && git push'
 
 
 alias ed='subl3'
