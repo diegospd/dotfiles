@@ -1,11 +1,14 @@
 alias aurUpdate='aurman -S aurman \
+                         google-chrome vivaldi \
                          dropbox dropbox-cli droxi \
-                         gitkraken google-chrome popcorntime \
-                         spotify stack-bin sublime-text-dev \
+                         gitkraken sublime-text-dev stack-bin \
+                         spotify popcorntime plex-media-player \
+                         hamster-time-tracker \
                          masterpdfeditor-free \
                          pyrenamer \
-                         plex-media-server plex-media-player \
                          keepassx \
+                         plex-media-server \
+                         yubico-yubioath-desktop slack-desktop \
                          --noconfirm --noedit --needed'
 # ninjutsu
 alias pulse-reinit='pulseaudio -k ; pulseaudio -D]'
