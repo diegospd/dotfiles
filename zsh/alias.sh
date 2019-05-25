@@ -6,6 +6,7 @@ alias aurUpdate='aurman -S aurman \
                          pyrenamer \
                          plex-media-player \
                          keepassx \
+                         hamster-time-tracker \
                          --noconfirm --noedit --needed'
 # ninjutsu
 alias pulse-reinit='pulseaudio -k ; pulseaudio -D]'
