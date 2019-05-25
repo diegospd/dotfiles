@@ -1,13 +1,13 @@
 #!/bin/bash
 ## git should already be installed
+## Run as root.
+## Idempotent
 
 source ~/.dotfiles/zsh/utils.sh
 echo "Updating arch"
 warning "Will ask for root password!"
 
-## Run as root.
-## Idempotent
-
+## https://stackoverflow.com/a/31872769
 if [ "$(whoami)" != "root" ]
 then
     sudo echo "a $HOME" && su -s "$0"
