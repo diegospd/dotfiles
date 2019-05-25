@@ -19,6 +19,10 @@ alias aurUpdate='aurman -S aurman \
 alias pulse-reinit='pulseaudio -k ; pulseaudio -D]'
 
 ## Temp
+alias cd.='cd $DOTFILES'
+alias cd.x='cd $DOTFILES/xmonad/my-xmonad/'
+alias cd.z='cd $DOTFILES/zsh/'
+
 alias cdnu='cd $NU_HOME'
 alias cdel='cd $NU_HOME/el-surrender/'
 alias lintPush='lein lint-fix && git add . && git commit -m "+lein lint-fix" && git push'
