@@ -28,8 +28,6 @@ missing () {
 }
 
 
-
-
  ## Remove orphan pacman packages
 orphans() {
   if [[ ! -n $(pacman -Qdt) ]]; then
@@ -73,4 +71,27 @@ extract() {
         ((e = e || $?))
     done
     return "$e"
+}
+
+
+# https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux#5947802
+red=`tput setaf 1`
+green=`tput setaf 2`
+blue=`tput setaf 4`
+reset=`tput sgr0`
+
+function info {
+  echo "${blue}$1${reset}"
+}
+
+function attention {
+  echo "${green}$1${reset}"
+}
+
+function warning {
+  echo "${red}$1${reset}"
+}
+
+function is_installed {
+  command -v $1
 }
