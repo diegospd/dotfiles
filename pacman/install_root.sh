@@ -14,6 +14,7 @@ then
     exit
 fi
 
+pacman -S --needed --noconfirm --overwrite reflector
 reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist
 
 pacman -Syyu --needed --noconfirm --overwrite \
