@@ -1,5 +1,4 @@
-lib/Keys.hs
- {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Keys (myKeys, theKeys, forbiddenKeys, myMod) where
 
