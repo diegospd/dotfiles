@@ -1,15 +1,25 @@
 #!/bin/bash
+## git should already be installed
+
+source ~/.dotfiles/zsh/utils.sh
+echo "Updating arch"
+warning "Will ask for root password!"
 
 ## Run as root.
 ## Idempotent
 
-## git should already be installed
+if [ "$(whoami)" != "root" ]
+then
+    sudo echo "a $HOME" && su -s "$0"
+    exit
+fi
 
 pacman -Syyu --needed --noconfirm --overwrite \
     sddm xorg-server \
     plasma-desktop kde-applications-meta phonon-qt5-vlc \
     flameshot \
     dolphin dolphin-plugins encfs nfs-utils fuse3 \
+    p7zip unrar gzip plan9port libarchive xz cabextract \
     filelight testdisk gparted smartmontools gsmartcontrol \
     tree hwinfo htop \
     openssh ntp \
