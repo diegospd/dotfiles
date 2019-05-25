@@ -14,6 +14,8 @@ then
     exit
 fi
 
+reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist
+
 pacman -Syyu --needed --noconfirm --overwrite \
     sddm xorg-server \
     plasma-desktop kde-applications-meta phonon-qt5-vlc \
@@ -38,8 +40,6 @@ pacman -Syyu --needed --noconfirm --overwrite \
     zsh ruby ruby-rdoc \
     steam ttf-liberation 
 
-
-
 ## enable daemons
 systemctl enable \
     ntpd.service \
@@ -48,10 +48,9 @@ systemctl enable \
     systemd-modules-load.service \
     plexmediaserver.service
 
-
 pkgfile --update
 
 ntpd -qg
 hwclock --systohc
 
-echo "Please reboot and install zsh :)"
+echo "Please reboot"
