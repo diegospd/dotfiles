@@ -35,7 +35,8 @@ systemctl enable \
     ntpd.service \
     sshd.service \
     sddm.service \
-    systemd-modules-load.service
+    systemd-modules-load.service \
+    plexmediaserver.service
 
 
 pkgfile --update
