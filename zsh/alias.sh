@@ -4,6 +4,7 @@ alias aurUpdate='aurman -S aurman \
                          spotify stack-bin sublime-text-dev \
                          masterpdfeditor-free \
                          pyrenamer \
+                         plex-media-player \
                          keepassx \
                          --noconfirm --noedit --needed'
 # ninjutsu
