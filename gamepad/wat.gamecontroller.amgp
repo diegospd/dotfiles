@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gamecontroller configversion="19" appversion="2.23">
+    <!--The SDL name for a joystick is included for informational purposes only.-->
+    <sdlname>Xbox One Wireless Controller</sdlname>
+    <!--The GUID for a joystick is included for informational purposes only.-->
+    <guid>050000005e040000e002000003090000</guid>
+    <profilename>wat</profilename>
+    <names>
+        <controlstickname index="1">L Stick</controlstickname>
+        <controlstickbuttonname index="1" button="7">volume up</controlstickbuttonname>
+        <controlstickname index="2">R Stick</controlstickname>
+    </names>
+    <sets>
+        <set index="1">
+            <stick index="1">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>65</diagonalRange>
+                <stickbutton index="9">
+                    <slots>
+                        <slot>
+                            <code>3</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="8">
+                    <slots>
+                        <slot>
+                            <code>3</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="7">
+                    <slots>
+                        <slot>
+                            <code>2</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="6">
+                    <slots>
+                        <slot>
+                            <code>2</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="5">
+                    <slots>
+                        <slot>
+                            <code>4</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="4">
+                    <slots>
+                        <slot>
+                            <code>4</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="3">
+                    <slots>
+                        <slot>
+                            <code>1</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="2">
+                    <slots>
+                        <slot>
+                            <code>1</code>
+                            <mode>mousemovement</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+            </stick>
+            <stick index="2">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+                <stickbutton index="8">
+                    <slots>
+                        <slot>
+                            <code>0x1000015</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="6">
+                    <slots>
+                        <slot>
+                            <code>0x1000014</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="4">
+                    <slots>
+                        <slot>
+                            <code>0x1000013</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+            </stick>
+            <dpad index="1">
+                <dpadbutton index="4">
+                    <actionname>makes it louder</actionname>
+                    <slots>
+                        <slot>
+                            <code>0x1000072</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </dpadbutton>
+            </dpad>
+            <trigger index="1">
+                <deadZone>6000</deadZone>
+                <throttle>positivehalf</throttle>
+            </trigger>
+            <trigger index="2">
+                <deadZone>6000</deadZone>
+                <throttle>positivehalf</throttle>
+            </trigger>
+            <button index="5">
+                <slots>
+                    <slot>
+                        <code>3</code>
+                        <mode>mousebutton</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="7">
+                <slots>
+                    <slot>
+                        <code>1</code>
+                        <mode>mousebutton</mode>
+                    </slot>
+                </slots>
+            </button>
+        </set>
+        <set index="2">
+            <stick index="1">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <stick index="2">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <trigger index="1">
+                <deadZone>6000</deadZone>
+                <throttle>positivehalf</throttle>
+            </trigger>
+            <trigger index="2">
+                <deadZone>6000</deadZone>
+                <throttle>positivehalf</throttle>
+            </trigger>
+        </set>
+        <set index="3">
+            <stick index="1">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <stick index="2">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <trigger index="1">
+                <throttle>positivehalf</throttle>
+            </trigger>
+            <trigger index="2">
+                <throttle>positivehalf</throttle>
+            </trigger>
+        </set>
+        <set index="4">
+            <stick index="1">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <stick index="2">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <trigger index="1">
+                <throttle>positivehalf</throttle>
+            </trigger>
+            <trigger index="2">
+                <throttle>positivehalf</throttle>
+            </trigger>
+        </set>
+        <set index="5">
+            <stick index="1">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <stick index="2">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <trigger index="1">
+                <throttle>positivehalf</throttle>
+            </trigger>
+            <trigger index="2">
+                <throttle>positivehalf</throttle>
+            </trigger>
+        </set>
+        <set index="6">
+            <stick index="1">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <stick index="2">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <trigger index="1">
+                <throttle>positivehalf</throttle>
+            </trigger>
+            <trigger index="2">
+                <throttle>positivehalf</throttle>
+            </trigger>
+        </set>
+        <set index="7">
+            <stick index="1">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <stick index="2">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <trigger index="1">
+                <throttle>positivehalf</throttle>
+            </trigger>
+            <trigger index="2">
+                <throttle>positivehalf</throttle>
+            </trigger>
+        </set>
+        <set index="8">
+            <stick index="1">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <stick index="2">
+                <calibrated>false</calibrated>
+                <summary></summary>
+                <diagonalRange>45</diagonalRange>
+            </stick>
+            <trigger index="1">
+                <throttle>positivehalf</throttle>
+            </trigger>
+            <trigger index="2">
+                <throttle>positivehalf</throttle>
+            </trigger>
+        </set>
+    </sets>
+</gamecontroller>

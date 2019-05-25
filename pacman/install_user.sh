@@ -25,7 +25,7 @@ stack install --system-ghc \
       alex happy hlint
 
 cabal update
-# cabal install hsdev ghc-mod
+cabal install monky
 
 
 echo " ~~ Build xmonad :)"
