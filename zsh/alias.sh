@@ -1,10 +1,17 @@
+
+# postman-bin lib32-mesa blockout2
 alias aurUpdate='aurman -S aurman \
+                         systemd-kcm \
+                         diskmonitor \
                          google-chrome vivaldi \
                          dropbox dropbox-cli droxi \
-                         gitkraken sublime-text-dev stack-bin \
-                         spotify popcorntime plex-media-player \
+                         gitkraken sublime-text-dev \
+                         leiningen stack-bin \
+                         spotify ffmpeg-compat-54 \
+                         popcorntime plex-media-player \
                          hamster-time-tracker \
                          masterpdfeditor-free \
+                         xmeasure \
                          pyrenamer \
                          keepassx \
                          plex-media-server \
@@ -14,6 +21,10 @@ alias aurUpdate='aurman -S aurman \
 alias pulse-reinit='pulseaudio -k ; pulseaudio -D]'
 
 ## Temp
+alias cd.='cd $DOTFILES'
+alias cd.x='cd $DOTFILES/xmonad/my-xmonad/'
+alias cd.z='cd $DOTFILES/zsh/'
+
 alias cdnu='cd $NU_HOME'
 alias cdel='cd $NU_HOME/el-surrender/'
 alias lintPush='lein lint-fix && git add . && git commit -m "+lein lint-fix" && git push'

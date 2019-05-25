@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 
 alias ..='cd ..'
@@ -28,8 +28,6 @@ missing () {
 }
 
 
-
-
  ## Remove orphan pacman packages
 orphans() {
   if [[ ! -n $(pacman -Qdt) ]]; then
@@ -40,37 +38,27 @@ orphans() {
 }
 
 
-extract() {
-    local c e i
 
-    (($#)) || return
 
-    for i; do
-        c=''
-        e=1
 
-        if [[ ! -r $i ]]; then
-            echo "$0: file is unreadable: \`$i'" >&2
-            continue
-        fi
+# https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux#5947802
+red=`tput setaf 1`
+green=`tput setaf 2`
+blue=`tput setaf 4`
+reset=`tput sgr0`
 
-        case $i in
-            *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
-                   c=(bsdtar xvf);;
-            *.7z)  c=(7z x);;
-            *.Z)   c=(uncompress);;
-            *.bz2) c=(bunzip2);;
-            *.exe) c=(cabextract);;
-            *.gz)  c=(gunzip);;
-            *.rar) c=(unrar x);;
-            *.xz)  c=(unxz);;
-            *.zip) c=(unzip);;
-            *)     echo "$0: unrecognized file extension: \`$i'" >&2
-                   continue;;
-        esac
+function info {
+  echo "${blue}$1${reset}"
+}
 
-        command "${c[@]}" "$i"
-        ((e = e || $?))
-    done
-    return "$e"
+function attention {
+  echo "${green}$1${reset}"
+}
+
+function warning {
+  echo "${red}$1${reset}"
+}
+
+function is_installed {
+  command -v $1
 }
