@@ -17,15 +17,15 @@ pacman -Syyu --needed --noconfirm --overwrite \
     ktorrent subdownloader \
     vlc mplayer kaffeine \
     rhythmbox audacity \
-    keepassxc\
-    texlive-most kile \
+    keepassxc \
     opera chromium firefox \
+    texlive-most kile \
     virtualbox virtualbox-host-modules-arch \
+    clojure intellij-idea-community-edition \
     ghc ghc-static \
     conky dzen2 rofi pacman-contrib espeak xorg-xrandr\
     unclutter \
     zsh ruby ruby-rdoc \
-    intellij-idea-community-edition clojure \
     steam ttf-liberation 
 
 

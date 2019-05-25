@@ -1,10 +1,17 @@
+
+# postman-bin lib32-mesa blockout2
 alias aurUpdate='aurman -S aurman \
+                         systemd-kcm \
+                         diskmonitor \
                          google-chrome vivaldi \
                          dropbox dropbox-cli droxi \
-                         gitkraken sublime-text-dev stack-bin \
-                         spotify popcorntime plex-media-player \
+                         gitkraken sublime-text-dev \
+                         leiningen stack-bin \
+                         spotify ffmpeg-compat-54 \
+                         popcorntime plex-media-player \
                          hamster-time-tracker \
                          masterpdfeditor-free \
+                         xmeasure \
                          pyrenamer \
                          keepassx \
                          --noconfirm --noedit --needed'
