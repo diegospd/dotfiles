@@ -8,14 +8,15 @@ if [ "$(whoami)" != "root" ]
 then
     source ~/.dotfiles/zsh/utils.sh
     echo "Updating arch"
+    warning "Consider running mirrors"
     warning "Will ask for root password!"
 
     sudo su -s "$0"
     exit
 fi
 
-pacman -S --needed --noconfirm --overwrite reflector
-reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist
+# pacman -S --needed --noconfirm --overwrite reflector
+# reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist
 
 pacman -Syyu --needed --noconfirm --overwrite \
     sddm xorg-server \
