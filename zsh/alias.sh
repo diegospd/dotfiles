@@ -15,7 +15,6 @@ alias aurUpdate='aurman -S aurman \
                          pyrenamer \
                          keepassx \
                          plex-media-server \
-                         yubico-yubioath-desktop slack-desktop \
                          --noconfirm --noedit --needed'
 # ninjutsu
 alias pulse-reinit='pulseaudio -k ; pulseaudio -D]'
