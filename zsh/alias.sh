@@ -54,6 +54,7 @@ alias hosts='sudo nano /etc/hosts'
 alias router='ip route | grep default'
 prende() {
   sudo mount /dev/mapper/shelf4tb /mnt/shelf && \
-  sudo systemctl start emby-server.service
+  sudo systemctl start plexmediaserver.service
+  # sudo systemctl start emby-server.service
   kb
 }
