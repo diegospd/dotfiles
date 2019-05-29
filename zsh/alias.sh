@@ -20,6 +20,7 @@ alias pulse-reinit='pulseaudio -k ; pulseaudio -D]'
 
 ## Temp
 alias cd.='cd $DOTFILES'
+alias cdx='cd $HOME/.xmonad/'
 alias cd.x='cd $DOTFILES/xmonad/my-xmonad/'
 alias cd.z='cd $DOTFILES/zsh/'
 
