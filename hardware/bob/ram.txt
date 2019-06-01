@@ -1,0 +1,35 @@
+λ bob ~ → sudo dmidecode --type memory
+[sudo] password for diego: 
+# dmidecode 3.2
+Getting SMBIOS data from sysfs.
+SMBIOS 2.7 present.
+
+Handle 0x0042, DMI type 16, 23 bytes
+Physical Memory Array
+        Location: System Board Or Motherboard
+        Use: System Memory
+        Error Correction Type: None
+        Maximum Capacity: 32 GB
+        Error Information Handle: Not Provided
+        Number Of Devices: 2
+
+Handle 0x0043, DMI type 17, 34 bytes
+Memory Device
+        Array Handle: 0x0042
+        Error Information Handle: Not Provided
+        Total Width: 64 bits
+        Data Width: 64 bits
+        Size: 8192 MB
+        Form Factor: DIMM
+        Set: None
+        Locator: ChannelA-DIMM0
+        Bank Locator: BANK 0
+        Type: DDR3
+        Type Detail: Synchronous
+        Speed: 1866 MT/s
+        Manufacturer: Kingston
+        Serial Number: 7A145D1B
+        Asset Tag: 9876543210
+        Part Number: KHX1600C10D3/8G   
+        Rank: 2
+        Configured Memory Speed: 1866 MT/s
