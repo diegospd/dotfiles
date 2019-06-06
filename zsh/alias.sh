@@ -3,7 +3,7 @@
 alias aurUpdate='aurman -S aurman \
                          systemd-kcm \
                          diskmonitor \
-                         google-chrome vivaldi \
+                         google-chrome vivaldi chromium-widevine \
                          dropbox dropbox-cli droxi \
                          gitkraken sublime-text-dev \
                          leiningen stack-bin \

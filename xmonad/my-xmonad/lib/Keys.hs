@@ -23,7 +23,9 @@ import qualified XMonad.Util.ExtensibleState as XS
 myMod :: KeyMask
 myMod = mod4Mask
 
-type KeyBinding = (String, X())
+type Ninjutsu   = String  --  "M-S x"
+type KeyBinding = (Ninjutsu, X())
+type Command    = String  --  "echo 'asi es'"
 
 theKeys :: [KeyBinding]
 theKeys = admin
@@ -33,8 +35,9 @@ theKeys = admin
        ++ mouseKeys 
        ++ dolphin
        ++ konsole
+       ++ nu
 
-forbiddenKeys :: [String]
+forbiddenKeys :: [Ninjutsu]
 -- Plasma uses this sequence to trigger its own workspace
 -- switcher. 
 -- TODO Fix this
@@ -42,7 +45,9 @@ forbiddenKeys = ["M-q"]
 -- TODO switch to emacs
 myKeys = numpadSwitcher
 
-windowBringer = [ ("M-g", gotoMenu), ("M-S-g", bringMenu) ]
+windowBringer :: [KeyBinding]
+windowBringer = [ ("M-g", gotoMenu) 
+                , ("M-S-g", bringMenu)]
 
    
 -- Emacs style key sequecences
@@ -50,11 +55,11 @@ windowBringer = [ ("M-g", gotoMenu), ("M-S-g", bringMenu) ]
 launchers :: [KeyBinding]
 launchers = 
     [
-      ("M-/", spawn "chromium")
-    , ("M-S-/", spawn "google-chrome-stable")
+      ("M-/", spawn chromium)
+    , ("M-S-/", spawn chrome)
     , ("M-m", spawn "ksysguard")
-    , ("M-v", spawn "keepassx")
-    , ("M-S-v", spawn "keepassxc")
+    , ("M-v", spawn "keepassxc")
+    , ("M-S-v", spawn "keepassx")
     , ("M-x x", openSubl "")
     , ("M-x k", openSubl "~/.dotfiles/xmonad/Keys.hs")
     , ("M-x i", openSubl "~/.dotfiles/xmonad/InfoBars.hs")
@@ -113,8 +118,6 @@ dolphin =
     , ("M-d j", runDolphin "~/storage/codigos/chambas")
     ] 
 
-runDolphin :: String -> X()
-runDolphin path = spawn $ "dolphin " <> path
 
 konsole :: [KeyBinding] 
 konsole =
@@ -137,14 +140,26 @@ admin =
     , ("M-a p", run_rofi)
     , ("M-a <Backspace>", spawn "xmonad-x86_64-linux --restart")
     , ("M-a =", spawn "xmonad-x86_64-linux --recompile && xmonad-x86_64-linux --restart")
-    , ("M-a a", say "All systems are okay")
-    , ("M-a b", restart_pulseaudio)
+    , ("M-a a", say "I alway lie. Even right now. Please laugh.")
+    , ("M-a b", spawn restart_pulseaudio)
     , ("M-a s", spawn "systemsettings5")
     ]
 
+nu :: [KeyBinding]
+nu = [("M-d n", runDolphin "$NU_HOME/" )]
 
+---------------------------------------------------------------------------------
+--            Commands
+---------------------------------------------------------------------------------
 
-restart_pulseaudio = spawn "pulseaudio -k || pulseaudio --start"
+chrome :: Command
+chrome = "google-chome-stable --password-store=basic"
+
+chromium :: Command
+chromium = "chromium --password-store=basic"
+
+restart_pulseaudio :: Command
+restart_pulseaudio = "pulseaudio -k || pulseaudio --start"
 
 run_rofi = spawn $ unwords
     [ "rofi -show run -modi run -location 1 -width 100 -yoffset 24"
@@ -157,6 +172,9 @@ run_rofi = spawn $ unwords
     , "-color-urgent \"#222222, #b1b4b3, #222222, #77003d, #b1b4b3\""
     , "-kb-row-select \"Tab\" -kb-row-tab \"\""
     ]
+
+runDolphin :: String -> X()
+runDolphin path = spawn $ "dolphin " <> path
 
 -------------------------------------------------------------------------------------------------------------------
 -- MyKeys
