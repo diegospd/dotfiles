@@ -46,7 +46,6 @@ pacman -Syyu --needed --noconfirm --overwrite \
 systemctl enable \
     ntpd.service \
     sshd.service \
-    sddm.service \
     systemd-modules-load.service
 
 pkgfile --update
@@ -54,4 +53,4 @@ pkgfile --update
 ntpd -qg
 hwclock --systohc
 
-echo "Please reboot"
+echo "Now reboot, and manually enable sddm.service"
