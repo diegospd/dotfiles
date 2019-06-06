@@ -27,8 +27,11 @@ type Ninjutsu   = String  --  "M-S x"
 type KeyBinding = (Ninjutsu, X())
 type Command    = String  --  "echo 'asi es'"
 
+run = spawn
+
 theKeys :: [KeyBinding]
 theKeys = admin
+       ++ stateful
        ++ windowBringer
        ++ multimedia 
        ++ launchers   
@@ -55,43 +58,39 @@ windowBringer = [ ("M-g", gotoMenu)
 launchers :: [KeyBinding]
 launchers = 
     [
-      ("M-/", spawn chromium)
-    , ("M-S-/", spawn chrome)
-    , ("M-m", spawn "ksysguard")
-    , ("M-v", spawn "keepassxc")
-    , ("M-S-v", spawn "keepassx")
-    , ("M-x x", openSubl "")
-    , ("M-x k", openSubl "~/.dotfiles/xmonad/Keys.hs")
-    , ("M-x i", openSubl "~/.dotfiles/xmonad/InfoBars.hs")
-    , ("M-x z", openSubl "~/.zshrc")
-    , ("M-x .", openSubl "~/.dotfiles")
-    , ("M-x p", openSubl "~/storage/codigos/haskell/pol")
-    , ("M-S-<KP_Enter>", spawn "konsole -e ~/.local/bin/pol")
-    , ("M-S-<KP_Subtract>", spawn "echo \"cd ~/storage/crypto/tor-browser_en-US && ./start-tor-browser.desktop\" | bash")
-    , ("M-i", spawn "flameshot gui")
+      ("M-/", run chromium)
+    , ("M-S-/", run chrome)
+    , ("M-m", run "ksysguard")
+    , ("M-v", run "keepassxc")
+    , ("M-S-v", run "keepassx")
+    , ("M-x x", run $ sublime "")
+    , ("M-x k", run $ sublime "~/.dotfiles/xmonad/Keys.hs")
+    , ("M-x i", run $ sublime "~/.dotfiles/xmonad/InfoBars.hs")
+    , ("M-x z", run $ sublime "~/.zshrc")
+    , ("M-x .", run $ sublime "~/.dotfiles")
+    , ("M-x p", run $ sublime "~/storage/codigos/haskell/pol")
+    , ("M-S-<KP_Enter>", run "konsole -e ~/.local/bin/pol")
+    , ("M-S-<KP_Subtract>", run "echo \"cd ~/storage/crypto/tor-browser_en-US && ./start-tor-browser.desktop\" | bash")
+    , ("M-i", run "flameshot gui")
     ]
 
-openSubl :: String -> X ()
-openSubl path = spawn $ "subl3 --new-window " <> path
 
 multimedia :: [KeyBinding]
 multimedia =  
     [
-      ("M-<KP_Add>", spawn $ spotify "PlayPause")
-    , ("M-<KP_Multiply>", spawn $ spotify "Previous")
-    , ("M-<KP_Subtract>", spawn $ spotify "Next")
+      ("M-<KP_Add>", run $ spotify_dbus "PlayPause")
+    , ("M-<KP_Multiply>", run $ spotify_dbus "Previous")
+    , ("M-<KP_Subtract>", run $ spotify_dbus "Next")
     ]
 
-spotify :: String -> String
-spotify = (++) "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."
 
 launch_and_play :: X ()
 launch_and_play = do
     !running <- is_running "spotify"
     !check <- when (not running) $ do
-        spawn "spotify"
+        run "spotify"
         sleep 5.0
-    !go <- spawn $ spotify "PlayPause"
+    !go <- run $ spotify_dbus "PlayPause"
     return ()
     
 
@@ -122,27 +121,26 @@ dolphin =
 konsole :: [KeyBinding] 
 konsole =
     [
-      ("M-\\ s", spawn $ cmd "~/shelf")
-    , ("M-\\ d", spawn $ cmd "~/Dropbox")
-    , ("M-\\ v", spawn $ cmd "~/shelf/video/")
-    , ("M-\\ x", spawn $ cmd "~/.dotfiles/xmonad/")
+      ("M-\\ s", run $ cmd "~/shelf")
+    , ("M-\\ d", run $ cmd "~/Dropbox")
+    , ("M-\\ v", run $ cmd "~/shelf/video/")
+    , ("M-\\ x", run $ cmd "~/.dotfiles/xmonad/")
     ]
     where cmd = (<>) "konsole --profile dieg --workdir "
 
-
+stateful :: [KeyBinding]
+stateful = [("M-b",   toggleBars)]
 
 admin :: [KeyBinding]
 admin =
     [
-      ("M-p", run_rofi)
-    , ("M-o", run_rofi)
-    , ("M-b", toggleBars)
-    , ("M-a p", run_rofi)
-    , ("M-a <Backspace>", spawn "xmonad-x86_64-linux --restart")
-    , ("M-a =", spawn "xmonad-x86_64-linux --recompile && xmonad-x86_64-linux --restart")
-    , ("M-a a", say "I alway lie. Even right now. Please laugh.")
-    , ("M-a b", spawn restart_pulseaudio)
-    , ("M-a s", spawn "systemsettings5")
+      ("M-p",   run rofi)
+    , ("M-o",   run rofi)
+    , ("M-a p", run rofi)
+    , ("M-a <Backspace>", run xmonad_restart)
+    , ("M-a =", run "xmonad-x86_64-linux --recompile && xmonad-x86_64-linux --restart")
+    , ("M-a b", run restart_pulseaudio)
+    , ("M-a s", run "systemsettings5")
     ]
 
 nu :: [KeyBinding]
@@ -161,7 +159,14 @@ chromium = "chromium --password-store=basic"
 restart_pulseaudio :: Command
 restart_pulseaudio = "pulseaudio -k || pulseaudio --start"
 
-run_rofi = spawn $ unwords
+sublime :: String -> Command
+sublime path = "subl3 --new-window " <> path
+
+spotify_dbus :: String -> Command
+spotify_dbus = (++) "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."
+
+rofi :: Command
+rofi = unwords
     [ "rofi -show run -modi run -location 1 -width 100 -yoffset 24"
     , "-lines 2 -line-margin 0 -line-padding 1"
     , "-separator-style none -font \"mono 10\" -columns 9 -bw 0"
@@ -173,9 +178,12 @@ run_rofi = spawn $ unwords
     , "-kb-row-select \"Tab\" -kb-row-tab \"\""
     ]
 
-runDolphin :: String -> X()
-runDolphin path = spawn $ "dolphin " <> path
+runDolphin' :: String -> Command
+runDolphin' path = "dolphin " <> path
+runDolphin = run . runDolphin'
 
+xmonad_restart :: Command
+xmonad_restart = "xmonad-x86_64-linux --restart"
 -------------------------------------------------------------------------------------------------------------------
 -- MyKeys
 -- https://hackage.haskell.org/package/X11-1.8/docs/src/Graphics-X11-Types.html
@@ -215,15 +223,15 @@ mouseKeys =
     , ("M-M1-C-<Left>", moveMouse (-50) 0)
     , ("M-M1-<Right>", moveMouse 10 0)
     , ("M-M1-C-<Right>", moveMouse 50 0)
-    , ("M-M1-<KP_Insert>", spawn "xdotool click 1")
-    , ("M-M1-C-<KP_Insert>", spawn "xdotool click 3")
-    -- , ("M-C-<Up>", spawn "xdotool click 4")
-    -- , ("M-C-<Down>", spawn "xdotool click 5")
-    -- , ("M-C-<Left>", spawn "xdotool click Left")
-    -- , ("M-C-<Right>", spawn "xdotool click Right")
+    , ("M-M1-<KP_Insert>", run "xdotool click 1")
+    , ("M-M1-C-<KP_Insert>", run "xdotool click 3")
+    -- , ("M-C-<Up>", run "xdotool click 4")
+    -- , ("M-C-<Down>", run "xdotool click 5")
+    -- , ("M-C-<Left>", run "xdotool click Left")
+    -- , ("M-C-<Right>", run "xdotool click Right")
     ]
 moveMouse :: Int -> Int -> X ()
-moveMouse x y = spawn cmd
+moveMouse x y = run cmd
     where cmd = "xdotool mousemove_relative -- " ++ (unwords $ show <$> [x,y])
 
 
