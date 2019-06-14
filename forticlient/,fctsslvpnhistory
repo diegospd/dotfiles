@@ -1,0 +1,16 @@
+version=2
+proxyserver=
+proxyport=
+proxyuser=
+proxypasswdenc=Enc 420d2ee65abded897a69c50f4995397969f1c1f949055d8e51
+current=nubank-vpn
+keepalive=1
+autostart=0
+profile=nubank-vpn
+nocertwarnning=1
+server=18.231.3.19
+port=10443
+user=
+passwordenc=Enc 420d2ee65abded897a69c50f4995397969f1c1f949055d8e51
+path=​$NU_HOME/.nu/certificates/prod/network.p12
+p12passwdenc=Enc 420d2ee65abded897a69c50f4995571de70c27509a26ad9bb41ee54eed20950cfa2a
