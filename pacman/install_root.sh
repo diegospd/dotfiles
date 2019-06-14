@@ -15,6 +15,8 @@ then
     exit
 fi
 
+
+echo "Copy pacman.conf /etc/ first"
 # pacman -S --needed --noconfirm --overwrite reflector
 # reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist
 
