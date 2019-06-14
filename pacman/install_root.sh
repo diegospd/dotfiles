@@ -34,7 +34,6 @@ pacman -Syyu --needed --noconfirm --overwrite \
     rhythmbox audacity \
     keepassxc \
     opera chromium firefox \
-    texlive-most kile \
     virtualbox virtualbox-host-modules-arch \
     clojure intellij-idea-community-edition \
     ghc ghc-static \
@@ -55,3 +54,4 @@ ntpd -qg
 hwclock --systohc
 
 echo "Now reboot, and manually enable sddm.service"
+echo "Install manually texlive-most kile"
