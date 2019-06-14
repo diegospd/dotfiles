@@ -19,6 +19,7 @@ fi
 # reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist
 
 pacman -Syyu --needed --noconfirm --overwrite \
+    netctl network-manager \
     sddm xorg-server \
     plasma-desktop kde-applications-meta phonon-qt5-vlc \
     flameshot \
