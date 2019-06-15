@@ -48,7 +48,8 @@ pacman -Syyu --needed --noconfirm --overwrite \
 systemctl enable \
     ntpd.service \
     sshd.service \
-    systemd-modules-load.service
+    systemd-modules-load.service \
+    NetworkManager.service
 
 pkgfile --update
 
