@@ -20,6 +20,7 @@ fi
 
 pacman -Syyu --needed --noconfirm --overwrite \
     netctl networkmanager \
+    powerdevil \
     sddm xorg-server \
     plasma-desktop kde-applications-meta phonon-qt5-vlc \
     flameshot \
@@ -30,7 +31,7 @@ pacman -Syyu --needed --noconfirm --overwrite \
     openssh ntp \
     pkgfile \
     ktorrent subdownloader \
-    vlc mplayer kaffeine \
+    vlc mplayer kaffeine alsa-utils \
     rhythmbox audacity \
     keepassxc \
     opera chromium firefox \
@@ -38,8 +39,8 @@ pacman -Syyu --needed --noconfirm --overwrite \
     clojure intellij-idea-community-edition \
     ghc ghc-static \
     conky dzen2 rofi pacman-contrib espeak xorg-xrandr \
-    unclutter \
-    zsh ruby ruby-rdoc \
+    unclutter dunst \
+    zsh ruby ruby-rdoc bash-completion \
     steam ttf-liberation 
 
 ## enable daemons
