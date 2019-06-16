@@ -9,7 +9,7 @@ alias aurUpdate='aurman -S aurman \
                          leiningen stack-bin \
                          spotify ffmpeg-compat-54 \
                          popcorntime plex-media-player \
-                         hamster-time-tracker safeeyes \
+                         # hamster-time-tracker safeeyes \
                          masterpdfeditor-free \
                          xmeasure \
                          pyrenamer \
