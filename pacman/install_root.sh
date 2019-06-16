@@ -19,7 +19,6 @@ fi
 echo "Copy pacman.conf /etc/ first"
 # pacman -S --needed --noconfirm --overwrite reflector
 # reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist
-
 pacman -Syyu --needed --noconfirm --overwrite \
     netctl networkmanager \
     powerdevil \
@@ -58,4 +57,5 @@ ntpd -qg
 hwclock --systohc
 
 echo "Now reboot, and manually enable sddm.service"
+echo "Consider inastalling:  nvidia nvidia-utils lib32-nvidia-utils lib32-opencl-nvidia"
 echo "Install manually texlive-most kile"
