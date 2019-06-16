@@ -15,6 +15,8 @@ then
     exit
 fi
 
+
+echo "Copy pacman.conf /etc/ first"
 # pacman -S --needed --noconfirm --overwrite reflector
 # reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist
 
@@ -47,7 +49,8 @@ pacman -Syyu --needed --noconfirm --overwrite \
 systemctl enable \
     ntpd.service \
     sshd.service \
-    systemd-modules-load.service
+    systemd-modules-load.service \
+    NetworkManager.service
 
 pkgfile --update
 
