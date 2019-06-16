@@ -56,6 +56,6 @@ pkgfile --update
 ntpd -qg
 hwclock --systohc
 
-echo "Now reboot, and manually enable sddm.service"
 echo "Consider inastalling:  nvidia nvidia-utils lib32-nvidia-utils lib32-opencl-nvidia"
-echo "Install manually texlive-most kile"
+echo "Manually install texlive-most kile"
+echo "Now reboot, and manually enable sddm.service"
