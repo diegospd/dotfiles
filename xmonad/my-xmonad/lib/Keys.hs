@@ -151,7 +151,7 @@ nu = [("M-d n", runDolphin "$NU_HOME/" )]
 ---------------------------------------------------------------------------------
 
 chrome :: Command
-chrome = "google-chome-stable --password-store=basic"
+chrome = "google-chrome-stable --password-store=basic"
 
 chromium :: Command
 chromium = "chromium --password-store=basic"
