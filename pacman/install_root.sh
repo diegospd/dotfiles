@@ -20,7 +20,7 @@ echo "Copy pacman.conf /etc/ first"
 # pacman -S --needed --noconfirm --overwrite reflector
 # reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syyu --needed --noconfirm --overwrite \
-    netctl networkmanager \
+    netctl networkmanager net-tools \
     powerdevil \
     sddm xorg-server \
     plasma-desktop kde-applications-meta phonon-qt5-vlc \
