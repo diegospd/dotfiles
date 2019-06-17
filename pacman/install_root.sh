@@ -42,7 +42,8 @@ pacman -Syyu --needed --noconfirm --overwrite \
     conky dzen2 rofi pacman-contrib espeak xorg-xrandr \
     unclutter dunst \
     zsh ruby ruby-rdoc bash-completion \
-    steam ttf-liberation 
+    steam ttf-liberation lib32-gtk2 lib32-glib2 lib32-libxtst lib32-libxrandr lib32-gdk-pixbuf2 lib32-libva1 lib32-libvdpau  lib32-libpulse
+
 
 ## enable daemons
 systemctl enable \
