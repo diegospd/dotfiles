@@ -10,3 +10,5 @@
     nuke = reset --hard HEAD
     saltapatras = reset --hard HEAD~1
     wut = ls-tree -r master --name-only
+[core]
+	excludesfile = /home/diego/.gitignore
