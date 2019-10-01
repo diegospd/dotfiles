@@ -1,7 +1,6 @@
  {-# LANGUAGE OverloadedStrings #-}
  {-# LANGUAGE BangPatterns #-}
 
-
 module Main (main) where
 
 import Bash
@@ -10,21 +9,16 @@ import Keys
 import Hooks
 import Daemons
 
-
---------------------------------------------------------------------------------
-
 import XMonad
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys,additionalKeysP,removeKeysP,checkKeymap)
 import XMonad.Config.Desktop(desktopConfig)
---------------------------------------------------------------------------------
+
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Spiral -- TODO move to hooks
---------------------------------------------------------------------------------
 
----
 import Data.Text
 import Turtle
 import Control.Concurrent(forkIO)
@@ -54,7 +48,7 @@ myConfig = desktopConfig
 main ::IO ()
 main = do
   -- wake_daemons
-  say "there's only passion"
+  say "dead to the bourgueise"
   -- !_ <- forkIO wake_daemons
   spawn "unclutter"
   spawn "kb"
