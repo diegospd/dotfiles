@@ -4,5 +4,8 @@
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 eval "$(stack --bash-completion-script stack)"
+
+# keyboard layout
 kb
 
+## dont start dunst here
