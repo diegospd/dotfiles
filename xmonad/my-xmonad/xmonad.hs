@@ -52,6 +52,7 @@ main = do
   -- !_ <- forkIO wake_daemons
   spawn "unclutter"
   spawn "kb"
+  -- spawn "dunst"
   !workspaceBar <- spawnPipe logBar
   mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig
@@ -62,7 +63,7 @@ main = do
       , layoutHook         = avoidStruts $ spiral (6/7) ||| layoutHook myConfig -- avoidStruts  (layoutHook myConfig)
       , handleEventHook    = handleEventHook myConfig <+> docksEventHook 
       , startupHook        = startupHook myConfig <+> docksStartupHook  <+> return () >> checkKeymap myConfig theKeys
-      , logHook            = myLogHook workspaceBar >> fadeInactiveLogHook 0.8 >> setWMName "LG3D"
+      , logHook            = myLogHook workspaceBar >> fadeInactiveLogHook 0.8 >> setWMName "LG3D" --todo: because of intellij
       , borderWidth        = 4
       , normalBorderColor  = "#000000"
       , focusedBorderColor = "#7B68EE"
