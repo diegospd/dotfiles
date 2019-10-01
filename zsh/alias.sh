@@ -1,12 +1,12 @@
 
-# postman-bin lib32-mesa blockout2
+# postman-bin lib32-mesa blockout2 leiningen 
 alias aurUpdate='aurman -S aurman \
                          systemd-kcm \
                          diskmonitor \
                          google-chrome vivaldi chromium-widevine \
                          dropbox dropbox-cli droxi \
                          gitkraken sublime-text-dev \
-                         leiningen stack-bin \
+                         stack-bin \
                          spotify ffmpeg-compat-54 \
                          popcorntime plex-media-player \
                          # hamster-time-tracker safeeyes \
