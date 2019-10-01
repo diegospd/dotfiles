@@ -46,16 +46,16 @@ pacman -Syyu --needed --noconfirm --overwrite \
 
 
 ## enable daemons
-systemctl enable \
-    ntpd.service \
-    sshd.service \
-    systemd-modules-load.service \
-    NetworkManager.service
+#systemctl enable \
+#    ntpd.service \
+#    sshd.service \
+#    systemd-modules-load.service \
+#    NetworkManager.service
 
-pkgfile --update
+#pkgfile --update
 
-ntpd -qg
-hwclock --systohc
+#ntpd -qg
+#hwclock --systohc
 
 echo "Consider inastalling:  nvidia nvidia-utils lib32-nvidia-utils lib32-opencl-nvidia"
 echo "Manually install texlive-most kile"
