@@ -1,0 +1,54 @@
+https://wiki.archlinux.org/index.php/pacman#Pacman_crashes_during_an_upgrade
+
+Pacman crashes during an upgrade
+In the case that pacman crashes with a "database write" error while removing packages, and reinstalling or upgrading packages fails thereafter, do the following:
+
+Boot using the Arch installation media. Preferably use a recent media so that the pacman version matches/is newer than the system.
+Mount the system's root filesystem, e.g. mount /dev/sdaX /mnt as root, and check the mount has sufficient space with df -h
+Mount the proc, sys and dev filesystems as well: mount -t proc proc /mnt/proc; mount --rbind /sys /mnt/sys; mount --rbind /dev /mnt/dev
+If the system uses default database and directory locations, you can now update the system's pacman database and upgrade it via pacman --sysroot /mnt -Syu as root.
+After the upgrade, one way to double-check for not upgraded but still broken packages: find /mnt/usr/lib -size 0
+Followed by a re-install of any still broken package via pacman --sysroot /mnt -S package.
+
+
+------------------------------------
+https://www.reddit.com/r/archlinux/comments/9v0h1q/recover_system_from_crash_during_update/
+
+
+To be able to make further changes to the system, you need to arch-chroot into it with the Arch iso, and then you can perform these steps:
+
+Fix Arch:
+
+run rm /var/lib/pacman/db.lck to signal Pacman that there is no other instance of Pacman running
+
+reinstall all dependencies:
+
+pacman -Qqdn > pkglist_deps.txt
+
+pacman --force --asdeps -S $(< pkglist_deps.txt)
+
+3. reinstall all explicit packages:
+
+pacman -Qqen > pkglist_exp.txt
+
+pacman --force -S $(< pkglist_exp.txt)
+
+
+
+Fix boot partition (specifically for systemd-boot):
+
+copy bootloader config from /boot if possible
+
+format boot partition and mount
+
+install bootloader
+
+bootctl install --path=<esp path>
+
+4. configure bootloader, for systemd-boot it is <esp path>/loader/loader.conf and add at least one appropriate entry to <esp path>/loader/entries
+
+5. force reinstall all packages that add files to boot, for me it was linux and intel-ucode
+
+6. update /etc/fstab with the new UUID of the boot partition
+
+
