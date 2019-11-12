@@ -1,6 +1,6 @@
 
 # postman-bin lib32-mesa blockout2 leiningen 
-alias aurUpdate='aurman -S aurman \
+alias aurUpdateFull='aurman -S aurman \
                          systemd-kcm \
                          diskmonitor \
                          google-chrome vivaldi chromium-widevine \
@@ -15,6 +15,15 @@ alias aurUpdate='aurman -S aurman \
                          pyrenamer \
                          keepassx \
                          --noconfirm --noedit --needed'
+
+alias aurUpdate='aurman -S aurman \
+                         google-chrome \
+                         gitkraken sublime-text-dev \
+                         spotify \
+                         popcorntime plex-media-player \
+                         --noconfirm --noedit --needed'
+
+
 # ninjutsu
 alias pulse-reinit='pulseaudio -k ; pulseaudio -D]'
 
