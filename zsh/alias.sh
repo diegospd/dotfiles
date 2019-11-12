@@ -32,6 +32,7 @@ alias cd.='cd $DOTFILES'
 alias cdx='cd $HOME/.xmonad/'
 alias cd.x='cd $DOTFILES/xmonad/my-xmonad/'
 alias cd.z='cd $DOTFILES/zsh/'
+alias cd.t='cd $DOTFILES/turtle/'
 
 alias cdnu='cd $NU_HOME'
 alias cdel='cd $NU_HOME/el-surrender/'
