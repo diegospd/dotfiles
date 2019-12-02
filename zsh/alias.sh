@@ -37,7 +37,7 @@ alias cd.t='cd $DOTFILES/turtle/'
 alias cdnu='cd $NU_HOME'
 alias cdel='cd $NU_HOME/el-surrender/'
 alias lintPush='lein lint-fix && git add . && git commit -m "+lein lint-fix" && git push'
-
+alias xx='xmonad'
 
 alias ed='subl3'
 
