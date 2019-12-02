@@ -1,6 +1,6 @@
 
 # postman-bin lib32-mesa blockout2 leiningen 
-alias aurUpdateFull='aurman -S aurman \
+alias aurUpdateFull='yay -S yay \
                          systemd-kcm \
                          diskmonitor \
                          google-chrome vivaldi chromium-widevine \
@@ -14,14 +14,15 @@ alias aurUpdateFull='aurman -S aurman \
                          xmeasure \
                          pyrenamer \
                          keepassx \
-                         --noconfirm --noedit --needed'
+                         yubico-yubioath-desktop slack-desktop \
+                         --noconfirm --needed'
 
-alias aurUpdate='aurman -S aurman \
+alias aurUpdate='yay -S  yay \
                          google-chrome \
                          gitkraken sublime-text-dev \
                          spotify \
                          popcorntime plex-media-player \
-                         --noconfirm --noedit --needed'
+                         --noconfirm --needed'
 
 
 # ninjutsu
