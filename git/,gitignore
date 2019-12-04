@@ -4,7 +4,16 @@
 *.iml
 .cpcache
 classes/production
-
+logback.xml
+goku
+vegeta
+gohan
+trunks
+goten
+gotenks
+gogeta
+roshi
+yamcha
 
 .idea
 # User-specific stuff
