@@ -63,6 +63,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 source ~/.dotfiles/zsh/export.sh
+source ~/.dotfiles/zsh/nu.sh
 source ~/.dotfiles/zsh/alias.sh
 source ~/.dotfiles/zsh/utils.sh
 source ~/.dotfiles/zsh/init.sh
