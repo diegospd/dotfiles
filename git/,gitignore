@@ -5,6 +5,7 @@
 .cpcache
 classes/production
 logback.xml
+
 goku
 vegeta
 gohan
@@ -14,6 +15,8 @@ gotenks
 gogeta
 roshi
 yamcha
+
+stack.yaml.lock
 
 .idea
 # User-specific stuff
