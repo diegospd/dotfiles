@@ -22,6 +22,7 @@ echo "Copy pacman.conf /etc/ first"
 pacman -Syyu --needed --noconfirm --overwrite \
     base-devel \
     stack \
+    dunst \
     yakuake \
     ghc ghc-static \
     netctl networkmanager net-tools \

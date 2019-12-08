@@ -1,0 +1,1 @@
+Autostart dunst and yakuake in plasma
