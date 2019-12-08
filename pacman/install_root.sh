@@ -20,6 +20,10 @@ echo "Copy pacman.conf /etc/ first"
 # pacman -S --needed --noconfirm --overwrite reflector
 # reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syyu --needed --noconfirm --overwrite \
+    base-devel \
+    stack \
+    yakuake \
+    ghc ghc-static \
     netctl networkmanager net-tools \
     powerdevil \
     sddm xorg-server \
@@ -36,9 +40,6 @@ pacman -Syyu --needed --noconfirm --overwrite \
     rhythmbox audacity \
     keepassxc \
     opera chromium firefox \
-    virtualbox virtualbox-host-modules-arch \
-    clojure intellij-idea-community-edition \
-    ghc ghc-static \
     conky dzen2 rofi pacman-contrib espeak xorg-xrandr \
     unclutter dunst \
     zsh ruby ruby-rdoc bash-completion \
