@@ -61,11 +61,11 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-
 source ~/.dotfiles/zsh/export.sh
-source ~/.dotfiles/zsh/nu.sh
 source ~/.dotfiles/zsh/alias.sh
 source ~/.dotfiles/zsh/utils.sh
 source ~/.dotfiles/zsh/init.sh
 source ~/.dotfiles/zsh/hosts.sh
-# source ~/.nurc
+
+source ~/.nurc
+source ~/Dropbox/nu/nu_alias.sh
