@@ -1,4 +1,8 @@
 
+cda(){
+    cd $1
+    ls -a
+}
 # postman-bin lib32-mesa blockout2 leiningen 
 alias aurUpdateFull='yay -S yay \
                          systemd-kcm \
@@ -42,6 +46,7 @@ alias ed='subl3'
 
 
 # Git
+alias master='git checkout master && git pull'
 alias add='git add'
 alias chiclepega='git commit --amend -C HEAD && git push --force'
 alias comovenga='git reset --hard HEAD~1 && git pull'
