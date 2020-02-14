@@ -1,8 +1,4 @@
 
-cda(){
-    cd $1
-    ls -a
-}
 # postman-bin lib32-mesa blockout2 leiningen 
 alias aurUpdateFull='yay -S yay \
                          systemd-kcm \
@@ -32,24 +28,6 @@ alias aurUpdate='yay -S  yay \
 # ninjutsu
 alias pulse-reinit='pulseaudio -k ; pulseaudio -D]'
 
-## Temp
-alias cd.='cd $DOTFILES'
-alias cdx='cd $HOME/.xmonad/'
-alias cd.x='cd $DOTFILES/xmonad/my-xmonad/'
-alias cd.z='cd $DOTFILES/zsh/'
-alias cd.t='cd $DOTFILES/turtle/'
-
-
-alias xx='xmonad'
-
-alias ed='subl3'
-
-
-# Git
-alias master='git checkout master && git pull'
-alias add='git add'
-alias chiclepega='git commit --amend -C HEAD && git push --force'
-alias comovenga='git reset --hard HEAD~1 && git pull'
 
 ## Haskell
 alias hugs="stack --system-ghc exec ghci -- -XOverloadedStrings"

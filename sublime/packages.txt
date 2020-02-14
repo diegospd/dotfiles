@@ -1,1 +1,2 @@
 https://www.granneman.com/webdev/editors/sublime-text/packages/how-to-install-and-use-sublime-alignment
+http://plaintext-productivity.net/2-04-how-to-set-up-sublime-text-for-markdown-editing.html
