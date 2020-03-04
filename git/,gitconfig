@@ -1,6 +1,7 @@
 [user]
-    email = diego.spd@gmail.com
+	email = diego.albarran@nubank.com.br
     name = diego murillo
+	signingKey = 037175EF565D008EFD2CD6D1F3531EABCCC7A85C
 [alias]
     co = checkout
     br = branch
@@ -12,3 +13,7 @@
     wut = ls-tree -r master --name-only
 [core]
 	excludesfile = /home/diego/.gitignore
+[commit]
+	gpgSign = true
+[tag]
+	forceSignAnnotated = true
