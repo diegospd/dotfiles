@@ -68,4 +68,4 @@ source ~/.dotfiles/zsh/init.sh
 source ~/.dotfiles/zsh/hosts.sh
 
 source ~/.nurc
-source ~/Dropbox/nu/nu_alias.sh
+source ~/.dotfiles.nu/zsh/alias.sh
