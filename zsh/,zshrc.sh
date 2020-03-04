@@ -62,10 +62,14 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 source ~/.dotfiles/zsh/export.sh
-source ~/.dotfiles/zsh/alias.sh
 source ~/.dotfiles/zsh/utils.sh
+
+source ~/.dotfiles/zsh/alias.sh
+source ~/.dotfiles/zsh/alias.cd.sh
+source ~/.dotfiles/zsh/alias.git.sh
+source ~/.dotfiles/zsh/alias.launch.sh
+
 source ~/.dotfiles/zsh/init.sh
 source ~/.dotfiles/zsh/hosts.sh
 
-source ~/.nurc
 source ~/.dotfiles.nu/zsh/alias.sh

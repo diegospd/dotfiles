@@ -68,6 +68,7 @@ launchers =
     , ("M-x i", run $ sublime "~/.dotfiles/xmonad/InfoBars.hs")
     , ("M-x z", run $ sublime "~/.zshrc")
     , ("M-x .", run $ sublime "~/.dotfiles")
+    , ("M-x ,", run $ sublime "~/.dotfiles.nu")
     , ("M-x p", run $ sublime "~/storage/codigos/haskell/pol")
     , ("M-S-<KP_Enter>", run "konsole -e ~/.local/bin/pol")
     , ("M-S-<KP_Subtract>", run "echo \"cd ~/storage/crypto/tor-browser_en-US && ./start-tor-browser.desktop\" | bash")
