@@ -48,7 +48,7 @@ myConfig = desktopConfig
 main ::IO ()
 main = do
   -- wake_daemons
-  say "Present Day, .. Present Time!"
+  say "Present Day, .. X,Present Time!"
   -- !_ <- forkIO wake_daemons
   spawn "unclutter"
   spawn "kb"
