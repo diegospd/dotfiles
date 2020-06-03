@@ -14,8 +14,6 @@ yay -S leiningen forticlientsslvpn
 echo "you must agree to stuff. run this"
 echo "sudo /opt/fortinet/forticlientsslvpn/helper/setup"
 echo "connect to the vpn with:"
-echo "forticlientsslvpn_cli --server newvpn.nubank.com.br:10443 --pkcs12 $NU_HOME/.nu/certificates/br/prod/network.p12"
-
 
 echo "Adding a using to docker group is equivalent to root access"
 # https://github.com/moby/moby/issues/9976
