@@ -57,7 +57,7 @@ main = do
   mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig
       { modMask            = myMod
-      , terminal           = "konsole --profile dieg"
+      , terminal           = "cool-retro-term" --"konsole --profile dieg"
       , workspaces         = myWorkspaces
       , manageHook         = manageHook myConfig <+> myManageHook 
       , layoutHook         = avoidStruts $ spiral (6/7) ||| layoutHook myConfig -- avoidStruts  (layoutHook myConfig)
