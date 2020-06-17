@@ -48,7 +48,7 @@ myConfig = desktopConfig
 main ::IO ()
 main = do
   -- wake_daemons
-  say "dead to the bourgueise"
+  say "Present Day, .. X,Present Time!"
   -- !_ <- forkIO wake_daemons
   spawn "unclutter"
   spawn "kb"
@@ -57,7 +57,7 @@ main = do
   mapM_ spawnPipe infoBars
   xmonad . docks $ myConfig
       { modMask            = myMod
-      , terminal           = "konsole --profile dieg"
+      , terminal           = "cool-retro-term" --"konsole --profile dieg"
       , workspaces         = myWorkspaces
       , manageHook         = manageHook myConfig <+> myManageHook 
       , layoutHook         = avoidStruts $ spiral (6/7) ||| layoutHook myConfig -- avoidStruts  (layoutHook myConfig)
