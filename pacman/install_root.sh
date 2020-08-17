@@ -21,6 +21,7 @@ echo "Copy pacman.conf /etc/ first"
 # reflector --verbose -l 300 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syyu --needed --noconfirm --overwrite \
     base-devel make \
+    thefuck \
     cool-retro-termn \
     tldr \
     stack \

@@ -10,7 +10,8 @@ yay -Syyu --needed --noconfirm \
       google-chrome \
       spotify \
       plex-media-player \
-      gitkraken 
+      gitkraken \
+      zoom  
 
 ##ffmpeg-compat-54     
 

@@ -1,4 +1,4 @@
-
+eval $(thefuck --alias)
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -6,6 +6,18 @@ export ZSH="$HOME/.oh-my-zsh"
 # Set name of the theme to load. 
 ZSH_THEME="norm" 
 # ZSH_THEME="lambda"
+
+
+
+# NEWLINE=$'\n'
+# PROMPT_BASE="%{$fg[yellow]%}λ %m %{$fg[green]%}%c %{$fg[yellow]%}→ $(git_prompt_info)$(hg_prompt_info)%{$reset_color%}"
+# PROMPT_FIRST="$(get_pwd)${NEWLINE}"
+# PROMPT="Line1${NEWLINE}LINE2"
+# #this is the function
+# function get_pwd() {
+#     echo "${PWD/$HOME/~}"
+# }
+
 
 # Random theming
 # ZSH_THEME="random"

@@ -9,7 +9,6 @@ alias aurUpdateFull='yay -S yay \
                          stack-bin \
                          spotify ffmpeg-compat-54 \
                          popcorntime plex-media-player \
-                         # hamster-time-tracker safeeyes \
                          masterpdfeditor-free \
                          xmeasure \
                          pyrenamer \
@@ -24,8 +23,12 @@ alias aurUpdate='yay -S  yay \
                          popcorntime plex-media-player \
                          --noconfirm --needed'
 
+alias aurUpdateDropbox='yay -S dropbox dropbox-cli droxi --noconfirm --needed'
 
-# ninjutsu
+
+
+## ninjutsu
+alias screen='sudo optirun -b none nvidia-settings -c :8'
 alias pulse-reinit='pulseaudio -k ; pulseaudio -D]'
 
 
