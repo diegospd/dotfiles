@@ -17,3 +17,5 @@
 	gpgSign = true
 [tag]
 	forceSignAnnotated = true
+[pull]
+	rebase = false
