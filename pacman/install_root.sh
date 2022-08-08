@@ -42,7 +42,8 @@ pacman -Syyu --needed --noconfirm --overwrite \
     vlc mplayer kaffeine alsa-utils \
     rhythmbox audacity \
     keepassxc \
-    opera chromium firefox \
+    opera opera-ffmpeg-codecs \
+    chromium firefox \
     conky dzen2 rofi pacman-contrib espeak xorg-xrandr \
     unclutter dunst \
     zsh ruby ruby-rdoc bash-completion \
