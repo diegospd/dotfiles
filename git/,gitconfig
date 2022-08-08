@@ -14,6 +14,8 @@
 [core]
 	excludesfile = /home/diego/.gitignore
 [commit]
-	gpgSign = true
+	gpgSign = false
 [tag]
-	forceSignAnnotated = true
+	forceSignAnnotated = false
+[init]
+	defaultBranch = main
