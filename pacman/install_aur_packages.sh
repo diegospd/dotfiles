@@ -8,7 +8,6 @@ yay -Syyu --needed --noconfirm \
       systemd-kcm \
       diskmonitor \
       google-chrome \
-      spotify \
       plex-media-player \
       gitkraken 
 
