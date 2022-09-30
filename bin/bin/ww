@@ -5,7 +5,7 @@
 ## 30 sept 2022
 ## https://gist.github.com/academo/613c8e2caf970fabd260cfd12820bde3
 ## https://unix.stackexchange.com/questions/656729/wmctrl-like-tool-or-alternative-for-kde-wayland
-
+## https://www.reddit.com/r/kde/comments/d0k9r5/how_do_i_bind_console_commands_to_keyboard/
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
