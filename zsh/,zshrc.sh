@@ -72,4 +72,3 @@ source ~/.dotfiles/zsh/alias.launch.sh
 source ~/.dotfiles/zsh/init.sh
 source ~/.dotfiles/zsh/hosts.sh
 
-source ~/.dotfiles.nu/zsh/alias.sh
